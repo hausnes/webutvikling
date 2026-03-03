@@ -1,5 +1,12 @@
 # Eksempel: Fjellturer
 
+Meny:
+- [Planlegging](#planlegging)
+- [Eksempel på datamodell](#eksempel-på-datamodell)
+- [Lage databasen](#lage-databasen)
+- [Oppgaver og løsningsforslag: SQL (AKA spørringer mot databasen)](#oppgaver-og-l%C3%B8sningsforslag-sql-aka-sp%C3%B8rringer-mot-databasen)
+- [Lage en webapplikasjon](#lage-en-webapplikasjon)
+
 ## Planlegging
 
 Prosjektbeskrivelse: En venn av deg har kommet på en idè til en app, der folk kan registrere fjelltopper de går på gjennom året. Vennen har derimot ikke peiling på hva som kreves for å kunne lagre denne informasjonen, og ber deg om å hjelpe til med planlegging av "backend". I første omgang skal du altså lage en datamodell, og forklare den.
@@ -38,15 +45,15 @@ Legg også inn testdata, slik at du har noe å jobbe med når du skal lage spør
 Lettvint løsning:
 - Se [fjelltur.db](fjelltur.db) for en ferdig database som du kan bruke, og som inneholder testdata. Du kan åpne denne i et verktøy du foretrekker, og se hvordan den er bygget opp, og hvilke data som ligger i den.
 
-## Oppgaver: SQL
+## Oppgaver og løsningsforslag: SQL (AKA spørringer mot databasen)
 
-Øv deg på å "spørre" databasen, og hente ut den informasjonen du er interessert i. 
+Øv deg på å "spørre" databasen, og hente ut den informasjonen du er interessert i.
 
 Her kan du finne oppgaver og løsningsforslag for SQL-spørringer mot denne databasen: [SQL - oppgaver og løsningsforslag](./SQL%20-%20oppgaver%20og%20løsningsforslag.md)
 
 ## Lage en webapplikasjon
 
-Vi skal nå lage en enkel webapplikasjon som kan hente data fra SQLite-databasen, og vise det i en nettleser. Vi skal bruke Node.js og Express for å lage en enkel server, og `better-sqlite3` for å håndtere SQLite-databasen.
+Vi skal nå lage en enkel webapplikasjon som kan hente data fra SQLite-databasen, og vise det i en nettleser. Vi skal bruke `Node.js` og `Express` for å lage en enkel server, og `better-sqlite3` for å håndtere SQLite-databasen.
 
 Sluttproduktet kan se slik ut:
 
@@ -67,6 +74,17 @@ npm init -y
 Kontroller at `package.json` har blitt opprettet, og at det inneholder en "main" som peker på `app.js` (eller hva du har valgt å kalle hovedfilen din).
 
 Merk deg at du skal lagre all koden for webapplikasjonen din i denne mappen, og det er her du skal installere nødvendige avhengigheter. Følg med på instruksjonene, da du etter hvert må opprette nye mapper og filer for å kunne lage en fungerende applikasjon.
+
+#### Feilsøkingstips
+
+Dersom du får problemer med å kjøre `npm init`, eller andre kommandoer, så kan det være lurt å sjekke at du har Node.js og npm installert på maskinen din. Du kan sjekke dette ved å kjøre `node -v` og `npm -v` i terminalen. Hvis du ikke har disse installert, kan du laste ned og installere Node.js fra [nodejs.org](https://nodejs.org/).
+
+Et annet problem som mange får er hvilke rettigheter du har til å kjøre script. Du kan tillate dette ved å skrive følgende kommando i terminalen (dersom du bruker PowerShell på Windows):
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```  
+
+Dette vil tillate deg å kjøre script som er laget på din egen maskin, men ikke script som er lastet ned fra internett, uten at du har godkjent det først.
 
 ### Installere nødvendige avhengigheter
 
