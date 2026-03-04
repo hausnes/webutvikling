@@ -30,7 +30,13 @@ Lag datamodellen, og forhold deg til normaliseringsreglene.
 
 ## Eksempel på datamodell
 
+<details>
+
+<summary>Se løsningsforslag (etter du har forsøkt selv)</summary>
+
 ![datamodell](fjelltur-datamodell.png)
+
+</details>
 
 NB: Kommentarene er ikke grundige nok til å forklare alle deler av modellen, men er eksempel på hvordan du kan tenke når du skal gjøre dette.
 
