@@ -6,6 +6,13 @@ Meny:
 - [Lage databasen](#lage-databasen)
 - [Oppgaver og løsningsforslag: SQL (AKA spørringer mot databasen)](#oppgaver-og-l%C3%B8sningsforslag-sql-aka-sp%C3%B8rringer-mot-databasen)
 - [Lage en webapplikasjon](#lage-en-webapplikasjon)
+  - [Initialisere et nytt Node-prosjekt](#initialisere-et-nytt-node-prosjekt)
+  - [Installere nødvendige avhengigheter](#installere-n%C3%B8dvendige-avhengigheter)
+  - [Lage en enkel Express-server](#lage-en-enkel-express-server)
+  - [Frontend-applikasjon: Vise alle fjellene](#frontend-applikasjon-vise-alle-fjellene)
+  - [Frontend-applikasjon: Vise fjellturer for en gitt person](#frontend-applikasjon-vise-fjellturer-for-en-gitt-person)
+  - [Stilsetting](#stilsetting)
+- [Videre arbeid](#videre-arbeid)
 
 ## Planlegging
 
