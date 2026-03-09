@@ -226,7 +226,7 @@ fetchData();
 ```
 </details>
 
-Du kan se all koden for dette i [`public`-mappen](/public/), og du kan også se hvordan jeg har gjort det i CSS for å style det litt.
+Du kan se all koden for dette i [`public`-mappen](./public/), og du kan også se hvordan jeg har gjort det i CSS for å style det litt.
 
 ## Frontend-applikasjon: Vise fjellturer for en gitt person
 
