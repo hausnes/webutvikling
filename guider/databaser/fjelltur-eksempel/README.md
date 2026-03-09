@@ -151,7 +151,7 @@ Du starter serveren ved å kjøre `node app.js` i terminalen.
 
 Kontroller at serveren starter uten feil, at du kan nå `http://localhost:3000/api/fjell_info` i nettleseren, og se dataene fra databasen. Hvilket format får du dataene i? Hvordan kan du bruke dette i en frontend-applikasjon senere?
 
-## Lage en frontend-applikasjon
+## Frontend-applikasjon: Vise alle fjellene
 
 Vi skal nå bruke `fetch` for å hente data fra API-et ditt, og vise det i en enkel frontend-applikasjon.
 
@@ -164,12 +164,12 @@ app.use(express.static('public'));
 
 Opprett en mappe som heter `public`, og lag tre filer her:
 - `index.html`
-- `code.js`
-- `style.css`
+- `index.js`
+- `index.css`
 
 Koble disse filene sammen.
 
-I `index.html` kan du lage en enkel struktur for å vise dataene, og inkludere `code.js` og `style.css`. For eksempel:
+I `index.html` kan du lage en enkel struktur for å vise dataene, og inkludere `index.js` og `index.css`. For eksempel:
 
 ```html
 <!DOCTYPE html>
@@ -178,8 +178,8 @@ I `index.html` kan du lage en enkel struktur for å vise dataene, og inkludere `
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fjell</title>
-    <script src="code.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <!-- Fylles ut av JS -->
@@ -187,7 +187,7 @@ I `index.html` kan du lage en enkel struktur for å vise dataene, og inkludere `
 </html>
 ```
 
-I `code.js` kan du bruke `fetch` for å hente data fra API-et ditt, og vise det i nettleseren. NB: Koden nedenfor skriver bare ut dataene i konsollen, du må selv lage HTML-elementer og legge dataene inn i disse for å vise det på siden.
+I `index.js` kan du bruke `fetch` for å hente data fra API-et ditt, og vise det i nettleseren. NB: Koden nedenfor skriver bare ut dataene i konsollen, du må selv lage HTML-elementer og legge dataene inn i disse for å vise det på siden.
 
 ```javascript
 async function fetchData() {
@@ -201,20 +201,304 @@ async function fetchData() {
 fetchData();
 ```
 
+<details>
+<summary>Løsningsforslag for å vise dataene i nettleseren, og ikke bare i konsollen (trykk for å vise)</summary>
+
+```javascript
+    for (let fjell of data) {
+        let fjellDiv = document.createElement('div');
+        fjellDiv.classList.add('fjell');
+        fjellDiv.innerHTML = `
+            <h3>${fjell.fjellnavn}</h3>
+            <p>Høyde: ${fjell.hoyde} meter</p>
+            <p>Beskrivelse: ${fjell.beskrivelse}</p>
+            <img src="/bilder/${fjell.foto}" alt="${fjell.fjellnavn}">
+        `;
+        document.body.appendChild(fjellDiv);
+    }
+```
+</details>
+
+
+## Frontend-applikasjon: Vise fjellturer for en gitt person
+
+Nå skal vi lage en dropdown-meny som lar oss velge en person, og når vi har valgt en person, så skal vi hente ut alle fjellturene til den personen, og vise det i nettleseren.
+
+Her deler vi problemet opp i flere deler:
+1. Lage en rute i Express som henter ut alle personer, og deretter bruke dette for å fylle dropdown-menyen.
+2. Lage en rute i Express som henter ut alle fjellturene til en gitt person, basert på brukernavn, og returnerer dette som JSON.
+3. Lage en event listener på dropdown-menyen, som henter ut den valgte personen, og deretter gjør et API-kall for å hente ut fjellturene til denne personen, og viser det i nettleseren.
+
+### Hente ut alle personer og fylle dropdown-menyen
+
+Legg til følgende rute i `app.js`:
+
+```javascript
+// Eksempel på en rute som henter alle brukernavnene til alle personene i databasen
+app.get('/api/personer_alle', (req, res) => {
+    const rows = db.prepare('SELECT brukernavn FROM person').all();
+    res.json(rows);
+});
+```
+
+Merk at vi her bare henter ut `brukernavn`-kolonnen, og ikke andre kolonner som for eksempel `fornavn` eller `etternavn`. Dette er fordi vi i dette eksempelet bare trenger brukernavnene for å kunne hente ut fjellturene til en person senere. Dersom du ønsker å vise fornavn og etternavn i dropdown-menyen, så kan du endre SQL-spørringen til å hente ut disse kolonnene også, og returnere det som JSON.
+
+Deretter lager vi klar HTML-koden i en fil vi kaller `eks-fjellturer-for-person.html`, som inneholder en dropdown-meny for å velge person, og en container for å vise fjellturene til den valgte personen. Denne filen legger du i `public`-mappen.:
+
+```html
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="eks-fjellturer-for-person.js" defer></script>
+    <link rel="stylesheet" href="eks-fjellturer-for-person.css">
+</head>
+<body>
+    <!-- Venstre panel: personvalg -->
+    <div id="sidebar">
+        <h2>Velg person</h2>
+        <select id="personDropdown" title="Personvalg">
+            <option value="">Velg en person</option>
+        </select>
+    </div>
+
+    <!-- Høyre panel: fjellturer for valgt person, fylles ut av JS -->
+    <div id="fjellturerContainer"></div>
+</body>
+</html>
+```
+
+Det siste steget i denne delen er å fylle ut dropdown-menyen med brukernavnene til alle personene i databasen. Dette gjør vi i den tilkoblede filen `eks-fjellturer-for-person.js`:
+
+```javascript
+// Fyller ut en dropdown (select) med  brukernavnene på alle personene i databasen
+async function hentPersoner() {
+    const response = await fetch('/api/personer');
+    const personer = await response.json();
+    const dropdown = document.getElementById('personDropdown');
+    
+    for (const person of personer) {
+        const option = document.createElement('option');
+        option.value = person.brukernavn;
+        option.textContent = person.brukernavn;
+        dropdown.appendChild(option);   
+    }
+}
+document.addEventListener('DOMContentLoaded', hentPersoner);
+```
+
+Kontroller at dropdown-menyen fylles ut med brukernavnene til alle personene i databasen når du åpner `eks-fjellturer-for-person.html` i nettleseren.
+
+### Hente ut alle turene til en gitt person
+
+Nå når dropdown-menyen er fylt ut, så skal vi lage en rute i Express som kan hente ut alle fjellturene til en gitt person, basert på brukernavn. Dette gjør vi ved å bruke URL-parametere i Express.
+
+Legg til følgende rute i `app.js`:
+
+```javascript
+app.get('/api/fjellturer/:brukernavn', (req, res) => {
+    const brukernavn = req.params.brukernavn;
+    if (!brukernavn) return res.status(400).json({ error: 'Mangler brukernavn' });
+
+    const rows = db.prepare(`
+        SELECT fjell.fjellnavn
+        FROM person
+        JOIN fjelltur ON person.brukernavn = fjelltur.brukernavn
+        JOIN fjell ON fjelltur.fjell_id = fjell.fjell_id
+        WHERE person.brukernavn = ?
+    `).all(brukernavn);
+
+    res.json(rows);
+});
+```
+
+Ruten over tar inn et `brukernavn` som en URL-parameter, og bruker dette for å hente ut alle fjellene som denne personen har gått på.
+
+Det du nettopp gjorde oppleves kanskje litt vanskelig, men tenk på alternativet, der du måtte lage en ny rute for hver person du vil hente ut fjellturene til, og hardkode navnet på personen i SQL-spørringen. Det ville vært en særs tungvint løsning, og det er derfor vi bruker URL-parametere (som `:brukernavn` i ruten) for å gjøre det mer fleksibelt.
+
+```javascript
+// Eksempel om å hente alle fjellene som en gitt person har gått
+// Et alternativ som er en veldig dårlig løsning, fordi vi hardkoder navnet på personen i SQL-spørringen,
+// og da må vi lage en ny rute for hver person vi vil hente ut fjellene til
+app.get('/api/fjellturar_hausnes', (req, res) => {
+    const rows = db.prepare(`
+        SELECT fjell.fjellnavn 
+        FROM person 
+        JOIN fjelltur ON person.brukernavn = fjelltur.brukernavn 
+        JOIN fjell ON fjelltur.fjell_id = fjell.fjell_id 
+        WHERE person.brukernavn = 'hausnes'`).all();
+    res.json(rows);
+});
+```
+
+Når ruten er på plass i `app.js`, så kan du teste den ved å åpne `http://localhost:3000/api/fjellturer/hausnes` i nettleseren, og se at du får ut alle fjellene som personen med brukernavn "hausnes" har gått på.
+
+For å faktisk bruke denne ruten i frontend-applikasjonen, så må du lage en event listener på dropdown-menyen, som henter ut den valgte personen, og deretter gjør et API-kall for å hente ut fjellturene til denne personen, og viser det i nettleseren.
+
+HTML-siden har du allerede laget, og den inneholder en dropdown-meny med id `personDropdown`, og en container med id `fjellturerContainer` der vi skal vise fjellturene til den valgte personen.
+
+I filen `eks-fjellturer-for-person.js` skal du nå **legge til** følgende:
+
+```javascript
+// Når en person er valgt, henter og viser alle fjellturene til den personen
+document.getElementById('personDropdown').addEventListener('change', async function() {
+    const brukernavn = this.value;
+    console.log(`Valgt person: ${brukernavn}`);
+    if (brukernavn) {
+        const response = await fetch(`/api/fjellturer/${encodeURIComponent(brukernavn)}`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const fjellturer = await response.json();
+        
+        // Sjekker at vi har fått data tilbake, og viser det i konsollen
+        console.log(fjellturer); // Her kan du erstatte dette med kode for å vise fjellturene i UI
+
+        // Skriver turene til HTML
+        // Først viser vi en overskrift med hvilken person vi viser turene for
+        const turerDiv = document.getElementById('fjellturerContainer');
+        turerDiv.innerHTML = `<h2>Fjellturer for ${brukernavn}</h2>`;
+        // Så viser vi en liste med alle fjellturene
+        const ul = document.createElement('ul');
+        for (const tur of fjellturer) {
+            const li = document.createElement('li');
+            li.textContent = tur.fjellnavn;
+            ul.appendChild(li);
+        }
+        turerDiv.appendChild(ul);
+    }
+});
+```
+
+Som du kan se i koden over, så har vi laget en event listener på dropdown-menyen, som lytter etter endringer (når en person blir valgt). Når en person blir valgt, så henter vi ut brukernavnet til den valgte personen, og gjør et API-kall til ruten vi laget tidligere for å hente ut fjellturene til denne personen. Når vi får dataene tilbake, så viser vi det i konsollen, og deretter skriver vi det ut i HTML ved å lage en overskrift med navnet på personen, og en liste med alle fjellturene.
+
+### Stilsetting
+
+Du kan se CSS-filen `eks-fjellturer-for-person.css` [her](./public/) for et eksempel på hvordan du kan style dette, og gjøre det mer visuelt tiltalende.
+
+<details>
+<summary>Kjapp visning av CSS (trykk for å vise)</summary>
+
+```css
+/* Deler designet inn i to deler, med select-elementet til venstre, og resultatene til høyre. */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+}
+
+/* Venstre panel – personvalg */
+#sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#sidebar h2 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a0c4ff;
+    margin-bottom: 8px;
+}
+
+#personDropdown {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+    border: 1px solid rgba(160, 196, 255, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0c4ff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+#personDropdown:hover,
+#personDropdown:focus {
+    border-color: #a0c4ff;
+    background-color: rgba(160, 196, 255, 0.12);
+}
+
+#personDropdown option {
+    background: #16213e;
+    color: #e0e0e0;
+}
+
+/* Høyre panel – resultater */
+#fjellturerContainer {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+#fjellturerContainer h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #a0c4ff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(160, 196, 255, 0.3);
+}
+
+#fjellturerContainer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#fjellturerContainer li {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 16px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#fjellturerContainer li:hover {
+    background: rgba(160, 196, 255, 0.1);
+    border-color: rgba(160, 196, 255, 0.4);
+}
+
+```
+</details>
+
 ## Videre arbeid
 
 ### Lage flere ruter/API-endepunkter
 
 Lag flere ruter som henter ut forskjellige typer data, der du kan få inspirasjon fra SQL-oppgavene du har løst tidligere.
 
-### Vise innholdet på nettsiden
+### La brukeren legge til nye fjellturer
 
-Bruk eks. `createElement` og `appendChild` for å lage HTML-elementer, og vise dataene på nettsiden. Noter deg spesielt ned hvordan du kan gjøre dette med bilder - der disse per nå ligger inne per fjell, med navnet `foto` i databasen.
+Lag en form i frontend-applikasjonen, der brukeren kan legge inn informasjon om en ny fjelltur, og deretter sende dette til serveren via et POST-kall. På serveren må du lage en rute som håndterer dette POST-kallet, og legger den nye fjellturen inn i databasen.
 
-Se løsningsforslag for hvordan du kan gjøre dette [her](./public/).
+Dette vil bli lagt til i en senere del av denne guiden.
 
 ### Stilsetting
 
-Bruk CSS for å gjøre det mer visuelt tiltalende. Du kan lage en `style.css`-fil i `public`-mappen, og linke til den i `index.html`.
+Jobb videre med å få "ting" til å se bedre ut. Det er mange måter å gjøre dette på, og det er helt opp til deg hvordan du vil style det. Bruk gjerne bilder og ikoner for å gjøre det mer interessant.
 
-Se løsningsforslag for hvordan du kan gjøre dette [her](./public/).
+Se løsningsforslag for hvordan jeg har gjort det [her](./public/), men merk at det ikke er et gjennomgående tema i stilsettingen så langt. Det er mer ment som et eksempel på hvordan du kan style det, og ikke en ferdig løsning. Det viktigste er at du har det gøy med å lage dette, og at du lærer noe underveis.
