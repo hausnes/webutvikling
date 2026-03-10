@@ -12,6 +12,7 @@ Meny:
   - [Frontend-applikasjon: Vise alle fjellene](#frontend-applikasjon-vise-alle-fjellene)
   - [Frontend-applikasjon: Vise fjellturer for en gitt person](#frontend-applikasjon-vise-fjellturer-for-en-gitt-person)
   - [Stilsetting](#stilsetting)
+  - [Frontend-applikasjon: Legge til nye fjellturer](#frontend-applikasjon-legge-til-nye-fjellturer)
 - [Videre arbeid](#videre-arbeid)
 
 ## Planlegging
@@ -497,7 +498,14 @@ body {
 
 Nå har du en fungerende frontend-applikasjon som kan hente ut og vise data fra databasen, men det er ikke så gøy hvis du ikke kan legge til nye data også. I denne delen skal vi lage en form i frontend-applikasjonen, der brukeren kan legge inn informasjon om en ny fjelltur, og deretter sende dette til serveren via et POST-kall. På serveren må du lage en rute som håndterer dette POST-kallet, og legger den nye fjellturen inn i databasen.
 
+Den fullstendige guiden for dette vil bli lagt til senere, men du kan allerede se kildekoden for hvordan dette kan gjøres nå. Du bør likevel forsøke selv først, der foreslått rekkefølge er:
+- Lage en form i HTML for å legge inn informasjon om en ny fjelltur
+    - Bruk det du lærte i forrige steg, der du forhåndsutfylte dropdown-menyen med data fra databasen, for å lage dropdown-menyer for å velge person og fjell når du skal legge inn en ny fjelltur (med andre ord skal ikke brukeren måtte skrive inn navnet på personen og fjellet)
+    - Bruk vanlige input-felt for å legge inn tidspunkt, tid brukt, og beskrivelse
+- Lage en rute i Express som kan håndtere et POST-kall for å legge til en ny fjelltur i databasen (dette har vi ikke snakket om enda, så du må gjøre litt research på hvordan du kan gjøre dette).
+- Lage en event listener på formen i frontend, som henter ut informasjonen som brukeren har skrevet inn, og sender dette til serveren via et POST-kall.
 
+NB: Vi forenkler selvsagt en del siden vi i denne løsningen kan legge inn fjellturer for andre enn oss selv. Se egen guide for hvordan du kan implementere autentisering og autorisasjon senere, for å gjøre det mer realistisk.
 
 ## Videre arbeid
 
