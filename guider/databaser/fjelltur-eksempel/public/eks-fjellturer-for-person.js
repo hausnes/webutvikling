@@ -1,6 +1,6 @@
 // Fyller ut en dropdown (select) med  brukernavnene på alle personene i databasen
 async function hentPersoner() {
-    const response = await fetch('/api/personer');
+    const response = await fetch('/api/personer_alle');
     const personer = await response.json();
     const dropdown = document.getElementById('personDropdown');
     
@@ -29,11 +29,11 @@ document.getElementById('personDropdown').addEventListener('change', async funct
         // Først viser vi en overskrift med hvilken person vi viser turene for
         const turerDiv = document.getElementById('fjellturerContainer');
         turerDiv.innerHTML = `<h2>Fjellturer for ${brukernavn}</h2>`;
-        // Så viser vi en liste med alle fjellturene
+        // Så viser vi en liste med alle fjellturene, inklusiv tidspunktet for turen
         const ul = document.createElement('ul');
         for (const tur of fjellturer) {
             const li = document.createElement('li');
-            li.textContent = tur.fjellnavn;
+            li.textContent = `${tur.fjellnavn} (${tur.tidspunkt})`;
             ul.appendChild(li);
         }
         turerDiv.appendChild(ul);

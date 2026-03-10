@@ -340,7 +340,7 @@ app.get('/api/fjellturar_hausnes', (req, res) => {
 });
 ```
 
-Når ruten er på plass i `app.js`, så kan du teste den ved å åpne `http://localhost:3000/api/fjellturer/hausnes` i nettleseren, og se at du får ut alle fjellene som personen med brukernavn "hausnes" har gått på.
+Når ruten er på plass i `app.js`, så kan du teste den ved å åpne `http://localhost:3000/api/fjellturer/hausnes` i nettleseren, og se at du får ut alle fjellene som personen med brukernavn "hausnes" har gått på. Sjekk deretter et annet brukernavn for å se at det fungerer for flere personer (for eksempel `http://localhost:3000/api/fjellturer/harry`).
 
 For å faktisk bruke denne ruten i frontend-applikasjonen, så må du lage en event listener på dropdown-menyen, som henter ut den valgte personen, og deretter gjør et API-kall for å hente ut fjellturene til denne personen, og viser det i nettleseren.
 
@@ -492,6 +492,12 @@ body {
 
 ```
 </details>
+
+## Frontend-applikasjon: Legge til nye fjellturer
+
+Nå har du en fungerende frontend-applikasjon som kan hente ut og vise data fra databasen, men det er ikke så gøy hvis du ikke kan legge til nye data også. I denne delen skal vi lage en form i frontend-applikasjonen, der brukeren kan legge inn informasjon om en ny fjelltur, og deretter sende dette til serveren via et POST-kall. På serveren må du lage en rute som håndterer dette POST-kallet, og legger den nye fjellturen inn i databasen.
+
+
 
 ## Videre arbeid
 

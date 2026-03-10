@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrer ny fjelltur</title>
+    <link rel="stylesheet" href="eks-registrere-ny-tur.css">
+    <script src="eks-registrere-ny-tur.js" defer></script>
+</head>
+<body>
+    <form id="ny-tur-form">
+        <h1>Registrer ny fjelltur</h1>
+        
+        <!-- Dropdown for å velge brukernavn: -->
+        <label for="brukernavn-dropdown">Brukernavn:</label>
+        <select id="brukernavn-dropdown" name="brukernavn-dropdown" required>
+            <!-- Fylles ut av JS -->
+        </select>
+        
+        <!-- Dropdown for å velge fjell: -->
+        <label for="fjell-dropdown">Fjell:</label>
+        <select id="fjell-dropdown" name="fjell-dropdown" required>
+            <!-- Fylles ut av JS -->
+        </select>
+
+        <!-- Tidspunkt for turen: -->
+        <label for="tidspunkt">Tidspunkt for turen:</label>
+        <input type="date" id="tidspunkt" name="tidspunkt" required>
+
+        <!-- Varighet for turen (i minutter): -->
+        <label for="varighet">Varighet (minutter):</label>
+        <input type="number" id="varighet" name="varighet" required>
+
+        <!-- Beskrivelse av turen -->
+        <label for="beskrivelse">Beskrivelse:</label>
+        <textarea id="beskrivelse" name="beskrivelse" required></textarea>
+
+        <button type="submit">Registrer tur</button>
+
+        <!-- Lenke til oversikt over registrerte turer -->
+        <a href="eks-fjellturer-for-person.html" class="nav-lenke">Se hvilke fjell en person har gått</a>
+    </form>
+</body>
+</html>
