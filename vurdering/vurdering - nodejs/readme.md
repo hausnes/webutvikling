@@ -8,12 +8,13 @@ Velg ett av følgende tema for ditt prosjekt:
 - **Chatteapp**: Jobb videre med chatteappen fra [guiden i Node.js](../../guider/guide%20-%20nodejs%20prosjekt.md), der du for eksempel legger til nye funksjoner.
 - **Bloggplattform**: En enkel bloggplattform hvor brukere kan opprette, redigere og slette innlegg.
 - **Arbeidsfordeling hjemme**: En app som viser arbeidsfordelingen på arbeidsoppgaver hjemme, slik at alle i husstanden kan se og oppdatere sine oppgaver - og ikke lenger krangle om hvem som faktisk gjør noe hjemme.
-- Fritt valgt oppgave etter godkjenning av lærer.
+- **Fjellturer**: En app som viser informasjon om fjell og mulige turforslag, der brukere kan legge til nye turer, og se informasjon om eksisterende turer. Du kan jobbe videre på [fjelltur-eksempelet](../../guider/databaser/fjelltur-eksempel/), tilpasse denne, eller lage din helt egen variant/vri.
+- **Fritt valgt oppgave etter godkjenning av lærer**.
 
 ## Krav
 
 - Prosjektet skal bruke `Express` som rammeverk for webserveren.
-- Prosjektet skal ha bruke en database (f.eks. SQLite, MongoDB eller PostgreSQL).
+- Prosjektet skal ha bruke en database (f.eks. SQLite3, MongoDB eller PostgreSQL).
     - Du skal lage en database-modell som passer til ditt prosjekt. Databasen må typisk inneholde minst tre tabeller med relasjoner mellom dem.
 - Prosjektet skal ha ruter som håndterer GET-forespørsler og som håndterer POST-forespørsler (lese og skrive data).
 - Prosjektet skal ha en frontend som kommuniserer med backend via API-kall (ruter). Frontend skal ta hensyn til universell utforming, og i utgangspunktet bruke vanlig HTML og CSS.
