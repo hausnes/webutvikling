@@ -17,8 +17,9 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - Eksempelprosjekt **biler**, om innlogging, hashing, sessions og middleware. [Les guide](./guider/guide%20-%20session%20og%20middleware.md)
 
 ### Github
-- Hvordan sette opp GitHub, lage din egen nettside og publisere den slik at du (og andre) kan besøke den fra mobil, PC eller dele med venner! [Les guide](./guider/github/guide%20-%20github%20og%20github%20desktop.md)
-- Github og lisensiering, hvilke regler gjeld, og brukes din kode for å trene opp KI-modeller?: [Les guide](./guider/github/guide%20-%20github%20og%20lisensiering.md)
+- Hvordan sette opp GitHub, lage din egen nettside og publisere den slik at du (og andre) kan besøke den fra mobil, PC el.l.! [Les guide](./guider/github/guide%20-%20github%20og%20github%20desktop.md)
+- Github, samarbeid og branches: Hvordan bidra til andres prosjekter, og hvordan andre kan bidra til dine prosjekter. Hvordan jobbe med "branches". [Les guide](./guider/github/github%20-%20bidra%20og%20f%C3%A5%20bidrag.md)
+- Github og lisensiering: Hvilke regler gjelder, og brukes din kode for å trene opp KI-modeller?: [Les guide](./guider/github/guide%20-%20github%20og%20lisensiering.md)
 
 ### Databaser og SQL
 - **Fjellturer**, et eksempel "fra start til slutt". Fra datamodell til database, og en enkel webapplikasjon som bruker denne databasen. [Les guide](./guider/databaser/fjelltur-eksempel/README.md)
