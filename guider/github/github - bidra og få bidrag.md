@@ -8,13 +8,15 @@ Meny:
 - [Hvordan samarbeide ved å bruke collaborators](#hvordan-samarbeide-ved-%C3%A5-bruke-collaborators)
 - [Hvordan opprette en branch](#hvordan-opprette-en-branch)
 - [Hvordan bidra til andres prosjekter](#hvordan-bidra-til-andres-prosjekter)
-
+- [Om merge-konflikter](#om-merge-konflikter)
 
 ## Hvordan samarbeide ved å bruke collaborators
 
 Den enkleste måten man kan samarbeide på, er ved å legge til hverandre som "collaborators" i GitHub. Det gjør at dere begge/alle har tilgang til å gjøre endringer i prosjektet, og det er ingen "pull request" som må godkjennes for at endringene skal bli en del av prosjektet. Det kan være en fin måte å samarbeide på, spesielt dersom dere har et godt system på hvem som gjør hva, og dere igjen ikke er "all over the place" i prosjektet til en hver tid.
 
 Du legger til collaborators ved å gå til "Settings" for prosjektet ditt, og deretter "Manage access". Klikk på "Invite a collaborator", og skriv inn brukernavnet til personen du vil legge til. Når de har akseptert invitasjonen, og lastet ned prosjektet, vil de ha tilgang til dette, og dere kan begynne å samarbeide.
+
+Dersom flere jobber med samme kode, kan du oppleve at det oppstår "merge-konflikter". Det betyr at to personer har gjort endringer i samme fil, og GitHub ikke klarer å avgjøre hvilken versjon som skal beholdes. Dette kan du lese mer om under ["Om merge-konflikter"](#om-merge-konflikter).
 
 ## Hvordan opprette en branch
 
@@ -27,6 +29,8 @@ For å opprette en branch, kan du gjøre dette på flere måter:
 Nå kan du gjøre endringer i denne branchen uten at det påvirker hovedversjonen av prosjektet. Du kjører i praksis to versjoner av prosjektet. Når du er fornøyd med endringene (og du har bekreftet at prosjektet fortsatt fungerer), kan du klikke på "Pull request" for å få endringene inn i hovedversjonen.
 
 Det er uansett viktig å passe på hvilken branch du jobber i, og at du ikke gjør endringer i hovedbranchen uten å teste det først i en egen branch. Det kan være lurt å ha en "dev" branch som dere bruker til å teste ut funksjonalitet, og deretter merge denne inn i "main" når dere er fornøyde med endringene.
+
+**Praktisk oppgave**: Vi ser først på at lærer gjør dette med sitt eget prosjekt, og deretter prøver hver elev å gjøre det samme med sin egen kode.
 
 ## Hvordan bidra til andres prosjekter
 
@@ -61,7 +65,7 @@ Når du er fornøyd med endringene dine, må du legge til og "commite" endringen
     git push origin main
     ```
 
-Nå har eieren av prosjektet (i dette tilfellet lærer) mulighet til å se gjennom endringene dine, gi tilbakemelding og eventuelt godkjenne dem. Du må vente i spenning på om endringene dine blir godkjent og en del av prosjektet. :)
+Nå har eieren av prosjektet (i dette tilfellet lærer) mulighet til å se gjennom endringene dine, gi tilbakemelding og eventuelt godkjenne dem. Du må vente i spenning på om endringene dine blir godkjent, og om de blir en del av prosjektet. :)
 
 ### Fra synspunktet til den som mottar bidrag:
 
