@@ -498,14 +498,227 @@ body {
 
 Nå har du en fungerende frontend-applikasjon som kan hente ut og vise data fra databasen, men det er ikke så gøy hvis du ikke kan legge til nye data også. I denne delen skal vi lage en form i frontend-applikasjonen, der brukeren kan legge inn informasjon om en ny fjelltur, og deretter sende dette til serveren via et POST-kall. På serveren må du lage en rute som håndterer dette POST-kallet, og legger den nye fjellturen inn i databasen.
 
-Den fullstendige guiden for dette vil bli lagt til senere, men du kan allerede se kildekoden for hvordan dette kan gjøres nå. Du bør likevel forsøke selv først, der foreslått rekkefølge er:
-- Lage en form i HTML for å legge inn informasjon om en ny fjelltur
-    - Bruk det du lærte i forrige steg, der du forhåndsutfylte dropdown-menyen med data fra databasen, for å lage dropdown-menyer for å velge person og fjell når du skal legge inn en ny fjelltur (med andre ord skal ikke brukeren måtte skrive inn navnet på personen og fjellet)
-    - Bruk vanlige input-felt for å legge inn tidspunkt, tid brukt, og beskrivelse
-- Lage en rute i Express som kan håndtere et POST-kall for å legge til en ny fjelltur i databasen (dette har vi ikke snakket om enda, så du må gjøre litt research på hvordan du kan gjøre dette).
-- Lage en event listener på formen i frontend, som henter ut informasjonen som brukeren har skrevet inn, og sender dette til serveren via et POST-kall.
+### Lage en form i HTML for registrering
 
-NB: Vi forenkler selvsagt en del siden vi i denne løsningen kan legge inn fjellturer for andre enn oss selv. Se egen guide for hvordan du kan implementere autentisering og autorisasjon senere, for å gjøre det mer realistisk.
+Se hvilke felt du trenger å fylle ut, enten basert på datammodellen eller ved å se på databasen. Lag deretter en form i HTML som inneholder input-felt for alle disse feltene. For eksempel kan du lage dropdown-menyer for å velge person og fjell, og vanlige input-felt for å legge inn tidspunkt, tid brukt, og beskrivelse.
+
+Prøv selv!
+
+Løsningsforslag (`eks-registrere-ny-tur.html`):
+
+```html
+<form id="ny-tur-form">
+    <h1>Registrer ny fjelltur</h1>
+    
+    <!-- Dropdown for å velge brukernavn: -->
+    <label for="brukernavn-dropdown">Brukernavn:</label>
+    <select id="brukernavn-dropdown" name="brukernavn-dropdown" required>
+        <!-- Fylles ut av JS -->
+    </select>
+    
+    <!-- Dropdown for å velge fjell: -->
+    <label for="fjell-dropdown">Fjell:</label>
+    <select id="fjell-dropdown" name="fjell-dropdown" required>
+        <!-- Fylles ut av JS -->
+    </select>
+
+    <!-- Tidspunkt for turen: -->
+    <label for="tidspunkt">Tidspunkt for turen:</label>
+    <input type="date" id="tidspunkt" name="tidspunkt" required>
+
+    <!-- Varighet for turen (i minutter): -->
+    <label for="varighet">Varighet (minutter):</label>
+    <input type="number" id="varighet" name="varighet" required>
+
+    <!-- Beskrivelse av turen -->
+    <label for="beskrivelse">Beskrivelse:</label>
+    <textarea id="beskrivelse" name="beskrivelse" required></textarea>
+
+    <button type="submit">Registrer tur</button>
+
+    <!-- Lenke til oversikt over registrerte turer -->
+    <a href="eks-fjellturer-for-person.html" class="nav-lenke">Se hvilke fjell en person har gått</a>
+</form>
+```
+
+### Fyll ut dropdown-menyer med data fra databasen
+
+For at brukeren skal kunne velge en person og et fjell når de skal registrere en ny fjelltur, så må vi fylle ut dropdown-menyer for disse feltene med data fra databasen. Dette gjør vi ved å lage to ruter i Express som henter ut alle personer og alle fjell, og deretter bruke disse rutene i frontend for å fylle ut. Dette gjorde du tidligere i oppgaven, så forsøk gjerne selv først.
+
+NB: Vi forenkler selvsagt en hel del siden vi i denne løsningen kan legge inn fjellturer for andre enn oss selv (vi kan velge andre brukere enn oss selv). Se egen guide for hvordan du kan implementere autentisering og autorisasjon senere, for å gjøre det mer realistisk dersom du ønsker det.
+
+#### Fylle ut dropdown for personer
+
+I Express, bruk ruten du laget tidligere i `app.js` for å hente ut alle personer:
+
+```javascript
+// Eksempel på en rute som henter alle brukernavnene til alle personene i databasen
+app.get('/api/personer_alle', (req, res) => {
+    const rows = db.prepare('SELECT brukernavn FROM person').all();
+    res.json(rows);
+});
+```
+
+I filen `eks-registrere-ny-tur.js` legger du til følgende kode for å hente ut alle personer og fylle ut dropdown-menyen for brukernavn:
+
+```javascript
+// Kode for å fylle ut en dropdown med alle brukernavn
+async function hentPersoner() {
+    const response = await fetch('/api/personer_alle');
+    const personer = await response.json();
+    console.log(personer); // Sjekker at vi har fått data tilbake
+
+    const dropdown = document.getElementById('brukernavn-dropdown');
+
+    dropdown.innerHTML = '';
+
+    for (const person of personer) {
+        const option = document.createElement('option');
+        option.value = person.brukernavn;
+        option.textContent = person.brukernavn;
+        dropdown.appendChild(option);
+    }
+}
+
+hentPersoner();
+```
+
+#### Fylle ut dropdown for fjell
+
+På samme måte som vi fylte ut dropdown-menyen for personer, så kan vi fylle ut dropdown-menyen for fjell ved å lage en rute i Express som henter ut alle fjell, og deretter bruke denne ruten i frontend for å fylle ut dropdown-menyen for fjell.
+
+I Express, legg til følgende rute i `app.js` for å hente ut alle fjell:
+
+```javascript
+// Eksempel på en rute som henter alle fjellnavnene som finnes i databasen
+app.get('/api/fjell_alle', (req, res) => {
+    const rows = db.prepare('SELECT fjellnavn FROM fjell').all();
+    res.json(rows);
+});
+```
+
+I filen `eks-registrere-ny-tur.js` legger du til følgende kode for å hente ut alle fjell og fylle ut dropdown-menyen for fjell:
+
+```javascript
+// Kode for å hente alle fjellene som er registrert i databasen og fylle ut en dropdown med disse
+async function hentFjellnavn() {
+    const response = await fetch('/api/fjell_alle');
+    const fjell = await response.json();
+    console.log(fjell); // Sjekker at vi har fått data tilbake
+
+    const dropdown = document.getElementById('fjell-dropdown');
+
+    dropdown.innerHTML = '';
+
+    for (const f of fjell) {
+        const option = document.createElement('option');
+        option.value = f.fjellnavn;
+        option.textContent = f.fjellnavn;
+        dropdown.appendChild(option);
+    }
+}
+
+hentFjellnavn();
+```
+
+Kontroller at begge dropdown-menyene fylles ut med data fra databasen når du åpner `eks-registrere-ny-tur.html` i nettleseren.
+
+### Håndtere form-submission og sende data til serveren
+
+Nå som vi har en form for å registrere en ny fjelltur, og dropdown-menyer som er fylt ut med data fra databasen, så skal vi lage en event listener på formen som håndterer form-submission, henter ut dataene som brukeren har skrevet inn, og sender dette til serveren via et POST-kall.
+
+#### Håndtere form-submission i frontend
+
+I filen `eks-registrere-ny-tur.js` legger du til følgende kode for å håndtere form-submission:
+
+```javascript
+// Kode for å sende data om en ny fjelltur til serveren
+document.getElementById('ny-tur-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Forhindrer at siden refresher når formen sendes inn
+    
+    // Henter ut data fra form-feltene
+    const brukernavn = document.getElementById('brukernavn-dropdown').value;
+    const fjellnavn = document.getElementById('fjell-dropdown').value;
+    const tidspunkt = document.getElementById('tidspunkt').value;
+    const varighet = document.getElementById('varighet').value;
+    const beskrivelse = document.getElementById('beskrivelse').value;
+
+    // Kontroller at vi har fått data fra form-feltene
+    console.log({ brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse }); // Sjekker at vi har riktig data før vi sender det til serveren
+
+    // Vi legger til mer kode her snart!
+});
+```
+
+Kontroller at skjemaet fungerer som det skal, og at du får ut dataene i konsollen når du trykker på "Registrer tur"-knappen.
+
+**Merk at du snart skal legge til mer kode i denne event listeneren** for å sende dataene til serveren, men før den tid må du lage en rute i Express som kan håndtere et POST-kall for å legge til en ny fjelltur i databasen. Se neste punkt for hvordan du kan gjøre dette.
+
+#### Lage en rute i Express for å håndtere POST-kall
+
+Vi skal nå lage en rute i Express som kan håndtere et POST-kall for å legge til en ny fjelltur i databasen. Dette innebærer at vi må kunne lese data fra forespørselen, og deretter bruke disse dataene for å sette inn en ny rad i `fjelltur`-tabellen i databasen.
+
+Løsningsforslag, legg til rute i`app.js`:
+
+```javascript
+// Rute som lar oss registrere en ny fjelltur for en person
+app.post('/api/registrer_tur', express.json(), (req, res) => {
+    // Henter ut data fra request body (det som klienten har sendt inn)
+    const { brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse } = req.body;
+
+    // Sjekk om personen eksisterer
+    const person = db.prepare('SELECT * FROM person WHERE brukernavn = ?').get(brukernavn);
+    if (!person) return res.status(404).json({ error: 'Person ikke funnet' });
+
+    // Sjekk om fjellet eksisterer
+    const fjell = db.prepare('SELECT * FROM fjell WHERE fjellnavn = ?').get(fjellnavn);
+    if (!fjell) return res.status(404).json({ error: 'Fjell ikke funnet' });
+
+    // Registrer den nye fjellturen
+    db.prepare('INSERT INTO fjelltur (brukernavn, fjell_id, tidspunkt, varighet, beskrivelse) VALUES (?, ?, ?, ?, ?)').run(brukernavn, fjell.fjell_id, tidspunkt, varighet, beskrivelse);
+
+    res.status(201).json({ message: 'Fjellturen er registrert!' });
+});
+```
+
+Vi skal altså få data fra frontend (brukernavn, fjellnavn, tidspunkt, varighet og beskrivelse), sjekke at både personen og fjellet eksisterer i databasen, og deretter sette inn en ny rad i `fjelltur`-tabellen med denne informasjonen.
+
+Nå må vi utvide koden i event listeneren for form-submission i `eks-registrere-ny-tur.js` for å sende dataene til denne ruten via et POST-kall. Dette gjør vi ved å bruke `fetch` med `method: 'POST'`, og sende dataene i request body som JSON. Logikken bak dette er lik i alle tilfeller der du sender data, så det er bare å tilpasse i fremtidige situasjoner.
+
+```javascript
+// Kode for å sende data om en ny fjelltur til serveren
+document.getElementById('ny-tur-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Forhindrer at siden refresher når formen sendes inn
+    
+    // Henter ut data fra form-feltene
+    const brukernavn = document.getElementById('brukernavn-dropdown').value;
+    const fjellnavn = document.getElementById('fjell-dropdown').value;
+    const tidspunkt = document.getElementById('tidspunkt').value;
+    const varighet = document.getElementById('varighet').value;
+    const beskrivelse = document.getElementById('beskrivelse').value;
+
+    // Kontroller at vi har fått data fra form-feltene
+    console.log({ brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse }); // Sjekker at vi har riktig data før vi sender det til serveren
+
+    // Sender dataen til serveren via et POST-kall
+    const response = await fetch('/api/registrer_tur', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse })
+    });
+
+    // Sjekker om responsen fra serveren var vellykket, og gir tilbakemelding til brukeren
+    if (response.ok) {
+        alert('Fjellturen er registrert!');
+    } else {
+        alert('Det skjedde en feil ved registrering av fjellturen.');
+    }
+});
+```
+
+Kontroller at du nå kan registrere en ny fjelltur ved å fylle ut skjemaet og trykke på "Registrer tur"-knappen, og at du får en bekreftelse på at turen er registrert. Du kan også sjekke i databasen at den nye fjellturen har blitt lagt til i `fjelltur`-tabellen.
 
 ## Videre arbeid
 
