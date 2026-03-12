@@ -4,15 +4,18 @@
 Mange av oppgåvene her let deg øve deg på å skrive spørringar opp mot ein allerede eksisterande database. 
 
 Du kan skrive spørringane på fleire måtar:
-- Installer [SQLite Studio](https://sqlitestudio.pl/), legg til databasen her og opne eit (eller fleire) SQL-vindu.
-- Skriv spørringar direkte i Visual Studio Code.
+- Bruk SQLiteStudio
+    - Installer [SQLite Studio](https://sqlitestudio.pl/) 
+    - Legg til databasen i programmet
+    - Opne eit (eller fleire) SQL-vindu og skriv spørringar der
+- Skriv spørringar direkte i Visual Studio Code vha. utvidelsen [SQLite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite)
 - ...
 
 ## 1. SQL-spørringar mot "world"-databasen
 
 Last ned databasefila «world»:
-- [MySQL-versjon](https://dev.mysql.com/doc/index-other.html). Eventuelt, direktelenke: [world.zip](https://downloads.mysql.com/docs/world-db.zip).
-- [SQLite-versjon](../eksempel/databaser/world_sqlite.sql).
+- [MySQL-versjon](https://dev.mysql.com/doc/index-other.html) - eventuelt, direktelenke: [world.zip](https://downloads.mysql.com/docs/world-db.zip)
+- [SQLite-versjon](../eksempel/databaser/world_sqlite.sql)
 
 Bli kjent med strukturen for databasen.
 
