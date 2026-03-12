@@ -9,7 +9,10 @@ Du kan skrive spørringane på fleire måtar:
 - ...
 
 ## 1. SQL-spørringar mot "world"-databasen
-Last ned databasefila «world» (lenke: https://dev.mysql.com/doc/index-other.html). Direktelenke: [world.zip](https://downloads.mysql.com/docs/world-db.zip).
+
+Last ned databasefila «world»:
+- [MySQL-versjon](https://dev.mysql.com/doc/index-other.html). Eventuelt, direktelenke: [world.zip](https://downloads.mysql.com/docs/world-db.zip).
+- [SQLite-versjon](../eksempel/databaser/world_sqlite.sql).
 
 Bli kjent med strukturen for databasen.
 
@@ -29,6 +32,7 @@ Bli kjent med strukturen for databasen.
 14.	…
 
 ## 2. Musikkdatabase (Hilde A.)
+
 Design en relasjonsdatabase for musikkartister. Lag datamodellen.
 
 Databasen skal minst inneholde følgende tabeller 
