@@ -71,5 +71,6 @@ For prosjektet ditt:
 
 Dersom du vil gå mer i dybden, eller trenger mer informasjon, kan du sjekke ut disse ressursene:
 
-- [Europa.eu: Data protection under GDPR](https://europa.eu/youreurope/business/dealing-with-customers/data-protection/data-protection-gdpr/index_en.htm)
-- [Termly: GDPR for Dummies](https://termly.io/resources/articles/gdpr-for-dummies/)
+- Europa.eu: [Data protection under GDPR](https://europa.eu/youreurope/business/dealing-with-customers/data-protection/data-protection-gdpr/index_en.htm)
+- Termly: [GDPR for Dummies](https://termly.io/resources/articles/gdpr-for-dummies/)
+- Kjapp liste på norsk: [GDPR-kontroll](https://gdprcontrol.no/gdpr-regler/)
