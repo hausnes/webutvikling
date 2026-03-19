@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fjellbilete</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <main class="page">
+        <header class="top-panel">
+            <h1>Fjellbilete</h1>
+            <p>Vel fjell, last opp bilete, og sjå galleriet under.</p>
+
+            <div class="controls">
+                <!-- Hentar alle fjella i databasen -->
+                <label for="fjell">Vel fjell</label>
+                <select name="fjell" id="fjell">
+                    <option value="">Velg eit fjell</option>
+                </select>
+
+                <!-- Gjer deg moglegheita til å laste opp eit nytt bilde av fjellet -->
+                <form id="bilde-form">
+                    <label for="bilde">Vel bildefil</label>
+                    <input type="file" name="bilde" id="bilde" accept="image/*" required>
+
+                    <label for="alternativtekst">Alternativtekst (valfritt)</label>
+                    <input type="text" name="alternativtekst" id="alternativtekst" placeholder="Kort beskriving av bildet">
+
+                    <button type="submit">Last opp bilde</button>
+                </form>
+            </div>
+        </header>
+
+        <!-- aria-label betyr at vi gir en beskrivelse av hva denne seksjonen inneholder, slik at skjermlesere kan formidle dette til brukere som er blinde eller har nedsatt syn. I dette tilfellet forteller "Bildegalleri" at denne delen av siden viser et galleri med bilder, noe som hjelper brukeren å forstå innholdet og navigere på siden mer effektivt. -->
+        <section class="gallery-section" aria-label="Bildegalleri">
+            <!-- Framvisning av bilder -->
+            <div id="bilder-container"></div>
+        </section>
+    </main>
+</body>
+</html>

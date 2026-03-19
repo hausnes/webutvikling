@@ -1,6 +1,8 @@
 // Server-bit, setter opp en Express-app
 const express = require('express');
 const app = express();
+const fs = require('fs');
+const path = require('path');
 
 const PORT = 3000;
 
@@ -40,9 +42,68 @@ if (fjellCount.count === 0) {
     `);
 }
 
-
 // Middleware for å servere statiske filer fra "public" mappen
 app.use(express.static('public'));
+
+// Middleware for å parse JSON i request body
+app.use(express.json());
+
+// Multer, for å handtere filopplasting
+const multer = require('multer');
+const uploadsDir = path.join(__dirname, 'public', 'uploads');
+
+// Sørger for at upload-mappa finst før opplasting.
+fs.mkdirSync(uploadsDir, { recursive: true });
+
+const storage = multer.diskStorage({
+    destination: (_req, _file, cb) => {
+        cb(null, uploadsDir); // cb er callback-funksjonen som tar (error, path) som argumenter - her, ingen feil, og path er uploadsDir.
+    },
+    filename: (_req, file, cb) => {
+        const extension = path.extname(file.originalname);
+        const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${extension}`;
+        cb(null, uniqueName); // cb er callback-funksjonen som tar (error, filename) som argumenter - her, ingen feil, og filename er det unike navnet vi genererer.
+    }
+});
+
+const upload = multer({ storage });
+
+// Rute for å laste opp eit nytt bilde til eit fjell
+app.post('/fjell/:id/bilder', upload.single('bilde'), (req, res) => {
+    const fjellId = req.params.id;
+
+    if (!req.file) {
+        return res.status(400).json({ message: 'Du må velje ei bildefil.' });
+    }
+
+    const fjell = db.prepare('SELECT id FROM fjell WHERE id = ?').get(fjellId);
+    if (!fjell) {
+        return res.status(404).json({ message: 'Fjell vart ikkje funne.' });
+    }
+
+    const { originalname, filename } = req.file;
+    const alternativtekst = req.body.alternativtekst || '';
+    const navn = originalname;
+    const sti = `uploads/${filename}`;
+
+    // Lagre bildeinformasjon i databasen
+    db.prepare('INSERT INTO bilde (sti, navn, alternativtekst, fjellid) VALUES (?, ?, ?, ?)').run(sti, navn, alternativtekst, fjellId);
+    res.json({ message: 'Bilde lasta opp vellykket!' });
+});
+
+
+// Rute som hentar alle bileta til eit gitt fjell
+app.get('/fjell/:id/bilder', (req, res) => {
+    const fjellId = req.params.id;
+    const bilder = db.prepare('SELECT * FROM bilde WHERE fjellid = ?').all(fjellId);
+    res.json(bilder);
+});
+
+// Rute som hentar alle fjella
+app.get('/fjell', (req, res) => {
+    const fjell = db.prepare('SELECT * FROM fjell').all();
+    res.json(fjell);
+});
 
 // Åpner en viss port på serveren, og starter serveren
 app.listen(PORT, () => {
