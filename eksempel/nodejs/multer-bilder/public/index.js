@@ -28,19 +28,24 @@ async function visBilderForFjell(fjellId) {
     }
 }
 
+// Hjelpefunksjon for å bygge riktig src for bilde, avhengig av hvordan sti er lagret i databasen
 function byggBildeKilde(sti) {
+    // Hvis sti er tom eller null, returner en tom streng for å unngå feil i img src
     if (!sti) {
         return '';
     }
 
+    // Hvis sti allerede er en full URL eller starter med /uploads/, returner den som den er
     if (sti.startsWith('/uploads/') || sti.startsWith('http://') || sti.startsWith('https://')) {
         return sti;
     }
 
+    // Hvis sti starter med 'uploads/', legg til en ledende slash for å gjøre det til en gyldig URL
     if (sti.startsWith('uploads/')) {
         return `/${sti}`;
     }
 
+    // For alle andre tilfeller, anta at sti er et filnavn og bygg en URL som peker til uploads-mappen
     return `/uploads/${sti}`;
 }
 
@@ -55,10 +60,13 @@ document.getElementById('fjell').addEventListener('change', (event) => {
 
 // Lar oss laste opp eit nytt bilde når skjemaet blir sendt inn
 document.getElementById('bilde-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Forhindrer at siden refresher når skjemaet sendes inn
     const formData = new FormData(event.target);
+    console.log('FormData:', formData);
+
     const fjellId = document.getElementById('fjell').value;
 
+    // Sikrar at brukeren har valt eit fjell før opplasting
     if (!fjellId) {
         alert('Vel eit fjell før du lastar opp bilde.');
         return;
@@ -78,6 +86,7 @@ document.getElementById('bilde-form').addEventListener('submit', async (event) =
         console.log(result);
 
         event.target.reset();
+        
         // Oppdater bileta etter opplasting
         visBilderForFjell(fjellId);
     } catch (error) {
