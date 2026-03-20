@@ -81,7 +81,7 @@ app.post('/fjell/:id/bilder', upload.single('bilde'), (req, res) => {
         return res.status(404).json({ message: 'Fjell vart ikkje funne.' });
     }
 
-    const { originalname, filename } = req.file;
+    const { originalname, filename } = req.file; // originalname er det opprinnelige filnavnet på den opplastede filen, mens filename er det unike navnet som multer har generert og lagret filen som på serveren.
     const alternativtekst = req.body.alternativtekst || '';
     const navn = originalname;
     const sti = `uploads/${filename}`;
