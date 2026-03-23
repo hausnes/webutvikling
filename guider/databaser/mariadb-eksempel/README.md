@@ -33,10 +33,16 @@ INSERT INTO chat (melding, tidspunkt) VALUES ('Hei, hvordan går det?', NOW());
 INSERT INTO chat (melding, tidspunkt) VALUES ('Alt bra, takk!', NOW());
 ```
 
-3. Se `app.js`-filen for hvordan du kobler til MariaDB og henter data fra `chat`-tabellen, og kjør deretter Node.js-applikasjonen ved å kjøre `node app.js` i terminalen.
+3. Se `app.js`-filen for hvordan du kobler til MariaDB og henter data fra `chat`-tabellen - både hele chatteloggen, og en spesifikk melding basert på ID - og kjør deretter Node.js-applikasjonen ved å kjøre `node app.js` i terminalen.
 
 NB: Husk å oppdatere databasekonfigurasjonen i `app.js`-filen med dine egne innstillinger (brukernavn, passord, database). Vi ville aldri hardkodet brukernavn og passord i en ekte applikasjon.
 
 ## Alternativt oppsett
 
 Du kan laste ned og kjøre SQL-filen for å få hele databasen lik mitt eksempel. [Last ned SQL](./chatdb-eksempel.sql) (lenke).
+
+# Videre arbeid
+
+Du kan gjerne få denne databasen til å kjøre i skyen, hos MariaDBs egen sky-tjeneste, eller hos en annen skyleverandør som tilbyr MariaDB. Da må du oppdatere databasekonfigurasjonen i `app.js`-filen med de riktige innstillingene for din sky-database.
+
+Du kan finne mer informasjon om hvordan du kommer i gang med MariaDB i skyen på [MariaDBs offisielle nettside](https://mariadb.com/products/cloud/).
