@@ -44,16 +44,16 @@ Kriterier for høy måloppnåelse
 1. Teknisk utførelse og "best practice"
     - Arkitektur: Koden er modulær og logisk organisert (f.eks. ved bruk av ruter-filer i Express, og separasjon mellom logikk og database-spørringer). Bruker variabler, løkker, funksjoner, valgsetninger og andre programmeringskonsepter på en hensiktsmessig måte.
     - Sikkerhet og Robusthet: Applikasjonen håndterer feilsituasjoner på en god måte (feilhåndtering med if/else eller try/catch og meningsfulle feilmeldinger til brukeren). 
-    - Dokumentasjon: Koden er selvforklarende med gode variabelnavn, og komplekse funksjoner er dokumentert med kommentarer som forklarer hvorfor koden gjør som den gjør.
-    - Datamodell: Databasen har en gjennomtenkt datamodell med minst tre tabeller og relasjoner som reflekterer virkelige sammenhenger i dataene. Du kan forklare datamodellen og begrunne designvalg i dokumentasjonen.
+    - Dokumentasjon: Koden er selvforklarende med god navngivning, og mer komplekse deler av koden er dokumentert med kommentarer som forklarer hvorfor koden gjør som den gjør.
+    - Datamodell: Databasen har en gjennomtenkt datamodell med minst tre tabeller og relasjoner som reflekterer virkelige sammenhenger i dataene. Du kan forklare datamodellen og begrunne designvalg i dokumentasjonen, med referanse til teori om datamodellering (f.eks. normalisering).
     - Bruk av Git: Koden er kontinuerlig oppdatert i et Git-repositorium, med meningsfulle commit-meldinger som reflekterer endringene som er gjort.
 
-2. Brukervennlighet og Tilgjengelighet (UU)
+2. Brukervennlighet og tilgjengelighet (UU)
 - Grensesnitt: Løsningen er intuitiv og estetisk gjennomført (gjennomgående stil).
 - Universell utforming: Du har implementert konkrete UU-tiltak, som korrekt bruk av semantisk HTML (overskrifter, main, nav etc.), god fargekontrast og tastaturnavigasjon.
 - Responsivitet: Applikasjonen fungerer sømløst på ulike skjermstørrelser.
 
-3. Problemløsning og Refleksjon
+3. Problemløsning og refleksjon
     - Selvstendig feilsøking: Du kan gjøre rede for utfordringer du møtte underveis, og vise hvordan du systematisk brukte verktøy (som terminalen, DevTools eller logger) for å finne løsninger.
     - Etikk og Lovverk: Du viser god forståelse for GDPR ved å forklare hvilke data som lagres, hvorfor de lagres, og hvordan du har minimert datainnsamlingen (dataminimering).
     - Faglig refleksjon: I fagsamtalen kan du knytte teori til praksis og begrunne teknologivalgene dine opp mot alternative løsninger.
