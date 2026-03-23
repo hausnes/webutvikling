@@ -30,6 +30,7 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
     - Hvorfor ikke bruke mange-til-mange-forhold (N:M) i databaseene våre? [Les guide](./guider/databaser/guide%20-%20mange-til-mange%20hvorfor%20ikke.md)
 - **Spørringer**, SQL (`S`tructured `Q`uery `L`anguage). [Les guide](./guider/databaser/guide%20-%20sql.md)
 - **Oppgaver** i datamodellering og SQL: [Les oppgaver](./oppgaver/oppgaver%20-%20sql.md)
+- **MariaDB**: Hvordan sette opp og bruke MariaDB, en populær database, som alternativ til SQLite. [Les guide](./guider/databaser/mariadb-eksempel/README.md)
 
 ### GDPR
 - En kort guide til hvordan elever som lager en webapp kan følge GDPR, og hva de må tenke på. [Les guide](./guider/GDPR.md)
