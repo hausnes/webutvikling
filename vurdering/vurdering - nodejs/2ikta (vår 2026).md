@@ -27,11 +27,11 @@ Du kan komme på en egen idé, eller velge ett av følgende tema for ditt prosje
 
 - Prosjektet skal bruke `Express` som rammeverk for webserveren. Dersom du ønsker å bruke et annet rammeverk, må dette godkjennes av lærer på forhånd.
 - Prosjektet skal ha bruke en database (f.eks. SQLite3, MariaDB eller PostgreSQL).
-    - Du skal lage en database-modell som passer til ditt prosjekt. Databasen må typisk inneholde minst fire tabeller med relasjoner mellom dem.
-- Prosjektet skal tilby funksjonalitet for CRUD (create, read, update, delete), med ruter/API-endepunkter som blant annet håndterer GET-forespørsler og som håndterer POST-forespørsler. Dette vil si at du skal kunne lese og skrive data.
+    - Du skal lage en database-modell som passer til ditt prosjekt. Databasen må typisk inneholde minst fire tabeller med relasjoner mellom disse.
+- Prosjektet skal tilby funksjonalitet for CRUD (create, read, update, delete), med ruter/API-endepunkter som håndterer dette.
     - Du KAN bruke andre, eksterne API-er i tillegg, for å supplere data til prosjektet ditt, eksempelvis værdata, postnummerdata, eller lignende. Dette er ikke et krav.
 - Prosjektet skal ha en frontend som kommuniserer med backend via API-kall (ruter). Frontend skal ta hensyn til universell utforming, og i utgangspunktet bruke vanlig HTML og CSS. Spør lærer dersom du ønsker å bruke et frontend-rammeverk (f.eks. React, Vue, Angular), da dette må godkjennes på forhånd.
-- Koden skal til en hver tid ligge oppdatert i et Git-repositorium (GitHub), der du bruker meningsfulle commit-meldinger.
+- Koden skal til en hver tid ligge oppdatert i et Git-repositorium (GitHub), der du bruker meningsfulle commit-meldinger. Du bruker brancher for å utvikle nye funksjoner, og for å kunne gjøre endringer uten å ødelegge fungerende kode.
 
 ### Dokumentasjon
 
@@ -63,6 +63,7 @@ Kriterier for høy måloppnåelse
 
 1. Teknisk utførelse og "best practice"
     - **Arkitektur**: Koden er modulær og logisk organisert (f.eks. ved bruk av ruter-filer i Express, og separasjon mellom logikk og database-spørringer). Bruker variabler, løkker, funksjoner, valgsetninger og andre programmeringskonsepter på en hensiktsmessig måte.
+        - Du kan bryte et prosjekt ned i mindre deler, og få en 
     - **Sikkerhet og robusthet**: Applikasjonen håndterer feilsituasjoner på en god måte (feilhåndtering med if/else eller try/catch og meningsfulle feilmeldinger til brukeren). 
     - **Dokumentasjon**: Koden og dokumenta er selvforklarende med god navngivning, er ryddig og lett å finne frem i, og ellers er krav til mengden dokumentasjon oppfylt. [Se eget punkt om dokumentasjon](#dokumentasjon).
     - **Datamodell**: Databasen har en gjennomtenkt datamodell med minst fire tabeller, og relasjoner som reflekterer virkelige sammenhenger i dataene. Du kan forklare datamodellen og begrunne designvalg i dokumentasjonen, med referanse til teori om datamodellering (f.eks. normalisering).
@@ -92,19 +93,32 @@ Nedenfor er en oversikt over tilgjengelige timer per uke:
 
 | Uke  | Dager | Timer |
 |------|------|-------|
-| 11   | Tips om å tenke på idèer - ellers øving på konsepter     | 4 timer      |
-| 12   | Tirsdag og fredag     | 4 timer      |
-| 13   | Tirsdag og fredag     | 4 timer      |
-| 14   | Påskeferie     | 0 timer      |
-| 15   | Tirsdag og fredag     | 4 timer      |
-| 16   | Fredag (tirsdag utgår)     |  2 timer     |
-| 17   | **Heldagsprøve** med fagsamtaler, tirsdag 21. april     | ...      |
-| 18   | Eventuelle resterende fagsamtaler     | ...      |
+| 13   | Idèutvikling - kravspesifikasjon, onsdag 25. mars og fredag 27. mars | 4 timer      |
+| 14   | Påskeferie     | ...      |
+| 15   | Onsdag 8. april, fredag 10. april     | 5 timer      |
+| 16   | Mandag 13. april, onsdag 15. april, fredag 17. april     | 6 timer      |
+| 17   | Onsdag 22. april, fredag 24. april     | 5 timer      |
+| 18   | Mandag 27. april, onsdag 29. april     | 4 timer      |
+| 19   | Tverrfaglig prøveeksamen     | ...      |
+| 20   | ...     | X timer      |
+| 21   | ...     | X timer      |
 
-Totalt: 14 timer
+Totalt: 24 timer
 
 > **Merk**: Det er viktig at du planlegger bruken av disse timene godt, slik at du får mest mulig ut av dem i forhold til prosjektets fremdrift og kvalitet.
 
 ## Delmål, innleveringer
 
-...
+NB: Denne delen blir oppdatert etter hvert.
+
+### Fagsamtale 1:
+
+Fagsamtale om kravspesifikasjon og idèutvikling, samt databasemodell og API-design, i uke 15 og 16. Dette er en del av vurderingen, og du må kunne gjøre rede for og begrunne de valgene du har gjort i forhold til kravspesifikasjon, databasemodell og API-design.
+
+### Fagsamtale 2:
+
+Kommer.
+
+### Fagsamtale 3:
+
+Kommer.
