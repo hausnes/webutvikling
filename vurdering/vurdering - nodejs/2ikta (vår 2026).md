@@ -100,8 +100,8 @@ Nedenfor er en oversikt over tilgjengelige timer per uke:
 | 17   | Onsdag 22. april, fredag 24. april     | 5 timer      |
 | 18   | (**fagsamtale 2**) Hovedfunksjonalitet skal være ferdig, men kan jobbe videre - mandag 27. april, onsdag 29. april     | 4 timer      |
 | 19   | Tverrfaglig prøveeksamen     | ...      |
-| 20   | ...     | X timer      |
-| 21   | ...     | X timer      |
+| 20   | ...     | ...      |
+| 21   | ...     | ...      |
 
 Totalt: 24 timer
 
