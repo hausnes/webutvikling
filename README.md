@@ -31,6 +31,7 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - **Spørringer**, SQL (`S`tructured `Q`uery `L`anguage). [Les guide](./guider/databaser/guide%20-%20sql.md)
 - **Oppgaver** i datamodellering og SQL: [Les oppgaver](./oppgaver/oppgaver%20-%20sql.md)
 - **MariaDB**: Hvordan sette opp og bruke MariaDB, en populær database, som alternativ til SQLite. [Les guide](./guider/databaser/mariadb-eksempel/README.md)
+- **Vennskap**, et eksempel på en selvrefererende relasjon, og hvordan modellere dette i en database. [Les guide](./guider/databaser/vennskap/README.md)
 
 ### GDPR
 - En kort guide til hvordan elever som lager en webapp kan følge GDPR, og hva de må tenke på. [Les guide](./guider/GDPR.md)
