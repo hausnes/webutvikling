@@ -26,7 +26,7 @@ Du kan komme på en egen idé, eller velge ett av følgende tema for ditt prosje
 ## Krav
 
 - Prosjektet skal bruke `Express` som rammeverk for webserveren. Dersom du ønsker å bruke et annet rammeverk, må dette godkjennes av lærer på forhånd.
-- Prosjektet skal ha bruke en database (f.eks. SQLite3, MariaDB eller PostgreSQL).
+- Prosjektet skal bruke en database (f.eks. SQLite3, MariaDB eller PostgreSQL).
     - Du skal lage en database-modell som passer til ditt prosjekt. Databasen må typisk inneholde minst fire tabeller med relasjoner mellom disse.
 - Prosjektet skal tilby funksjonalitet for CRUD (create, read, update, delete), med ruter/API-endepunkter som håndterer dette.
     - Du KAN bruke andre, eksterne API-er i tillegg, for å supplere data til prosjektet ditt, eksempelvis værdata, postnummerdata, eller lignende. Dette er ikke et krav.
@@ -35,12 +35,12 @@ Du kan komme på en egen idé, eller velge ett av følgende tema for ditt prosje
 
 ### Dokumentasjon
 
-- **Kravspesifikasjon**: En beskrivelse av hva prosjektet skal gjøre, og hvilke funksjoner det skal ha. Dette skal være en detaljert beskrivelse av funksjonaliteten. Kravspesifikasjonen skal være i Markdown-formatet (`.md`). Som utgangspunkt tar du egne idèer, sammen med eventuelle fokusgrupper med medeelever, lærer, foreldre eller andre potensielle brukere, for å finne ut hva som er viktig å ha med i prosjektet ditt. Kravspesifikasjonen skal være så detaljert at en annen utvikler kunne implementert prosjektet basert på denne.
+- **Kravspesifikasjon**: En beskrivelse av hva prosjektet skal gjøre, og hvilke funksjoner det skal ha. Dette skal være en detaljert beskrivelse av funksjonaliteten. Kravspesifikasjonen skal være i Markdown-formatet (`.md`). Som utgangspunkt tar du egne idèer, sammen med eventuelle "fokusgrupper" med medeelever, lærer, foreldre eller andre potensielle brukere, for å finne ut hva som er viktig å ha med i prosjektet ditt. Kravspesifikasjonen skal være så detaljert at en annen utvikler kunne implementert prosjektet basert på denne.
 - Koden skal være godt dokumentert, både i selve koden og i egne dokumentasjonsfiler. Dokumentasjonsfilene skal være i Markdown-formatet (`.md`) (slik denne oppgaveteksten er).
     - **Kodedokumentasjon**: Forklaringer og kommentarer i koden.
     - **Utviklingsdokumentasjon** (system- og arkitektur, oppbygging): Beskrivelse av hvordan prosjektet er bygget opp, valg som er gjort, og eventuelle utfordringer. Minimumskrav:
         - Teknologi som er brukt (f.eks. rammeverk, database, frontend-teknologi).
-        - Datamodell, samt beskrivelse av databasemodellen (tabeller, relasjoner).
+        - Datamodell, samt beskrivelse av databasemodellen (tabeller, relasjoner) og hvordan logikken fungerer.
         - Beskrivelse av API-endepunkter (ruter), og hva de gjør.
         - Beskrivelse av frontend (hvilke sider, hva de gjør, og hvordan de kommuniserer med backend).
 
@@ -64,8 +64,8 @@ Kriterier for høy måloppnåelse
 1. Teknisk utførelse og "best practice"
     - **Arkitektur**: Koden er modulær og logisk organisert (f.eks. ved bruk av ruter-filer i Express, og separasjon mellom logikk og database-spørringer). Bruker variabler, løkker, funksjoner, valgsetninger og andre programmeringskonsepter på en hensiktsmessig måte.
         - Du kan bryte et prosjekt ned i mindre deler, og få en 
-    - **Sikkerhet og robusthet**: Applikasjonen håndterer feilsituasjoner på en god måte (feilhåndtering med if/else eller try/catch og meningsfulle feilmeldinger til brukeren). 
-    - **Dokumentasjon**: Koden og dokumenta er selvforklarende med god navngivning, er ryddig og lett å finne frem i, og ellers er krav til mengden dokumentasjon oppfylt. [Se eget punkt om dokumentasjon](#dokumentasjon).
+    - **Sikkerhet og robusthet**: Applikasjonen håndterer feilsituasjoner på en god måte (feilhåndtering med if/else eller try/catch og meningsfulle feilmeldinger til brukeren). Du har implementert tiltak for å sikre applikasjonen og data til brukerne, som for eksempel input-validering, beskyttelse mot SQL-injeksjon, og håndtering av sensitive data i henhold til GDPR. 
+    - **Dokumentasjon**: Koden og dokumentasjonen er selvforklarende med god navngivning, er ryddig og lett å finne frem i, og ellers er krav til mengden dokumentasjon oppfylt. [Se eget punkt om dokumentasjon](#dokumentasjon).
     - **Datamodell**: Databasen har en gjennomtenkt datamodell med minst fire tabeller, og relasjoner som reflekterer virkelige sammenhenger i dataene. Du kan forklare datamodellen og begrunne designvalg i dokumentasjonen, med referanse til teori om datamodellering (f.eks. normalisering).
     - **Versjonskontroll (Git)**: Koden er kontinuerlig oppdatert i et Git-repositorium, med meningsfulle commit-meldinger som reflekterer endringene som er gjort. Bruk av branching for å mer kontrollert utvikle nye funksjoner, og for å kunne gjøre endringer uten å ødelegge fungerende kode.
 
@@ -98,7 +98,7 @@ Nedenfor er en oversikt over tilgjengelige timer per uke:
 | 15   | Onsdag 8. april, fredag 10. april     | 5 timer      |
 | 16   | Mandag 13. april, onsdag 15. april, fredag 17. april     | 6 timer      |
 | 17   | Onsdag 22. april, fredag 24. april     | 5 timer      |
-| 18   | Mandag 27. april, onsdag 29. april     | 4 timer      |
+| 18   | Hovedfunksjonalitet skal være ferdig - mandag 27. april, onsdag 29. april     | 4 timer      |
 | 19   | Tverrfaglig prøveeksamen     | ...      |
 | 20   | ...     | X timer      |
 | 21   | ...     | X timer      |
@@ -113,12 +113,10 @@ NB: Denne delen blir oppdatert etter hvert.
 
 ### Fagsamtale 1:
 
-Fagsamtale om kravspesifikasjon og idèutvikling, samt databasemodell og API-design, i uke 15 og 16. Dette er en del av vurderingen, og du må kunne gjøre rede for og begrunne de valgene du har gjort i forhold til kravspesifikasjon, databasemodell og API-design.
+Fagsamtale om kravspesifikasjon og idèutvikling, samt databasemodell og API-design, i uke 16. Dette er en del av vurderingen, og du må kunne gjøre rede for og begrunne de valgene du har gjort i forhold til kravspesifikasjon, databasemodell, API-design og GDPR.
 
 ### Fagsamtale 2:
 
-Kommer.
+Avsluttende fagsamtale om prosjektet, der du skal kunne gjøre rede for og begrunne de teknologiske valgene du har gjort, samt forklare hvordan prosjektet er bygget opp, og hvordan det fungerer. Du skal også kunne gjøre endringer i koden basert på tilbakemelding fra lærer, og forklare hva du gjør og hvorfor.
 
-### Fagsamtale 3:
-
-Kommer.
+Her kan det også være et fokus på GDPR og UU.
