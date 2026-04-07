@@ -95,8 +95,8 @@ Nedenfor er en oversikt over tilgjengelige timer per uke:
 |------|------|-------|
 | 13   | Idèutvikling - kravspesifikasjon, onsdag 25. mars og fredag 27. mars | 4 timer      |
 | 14   | Påskeferie     | ...      |
-| 15   | Onsdag 8. april, fredag 10. april     | 5 timer      |
-| 16   | (**fagsamtale 1**) Mandag 13. april, onsdag 15. april, fredag 17. april     | 6 timer      |
+| 15   | Onsdag 8. april, (fredag 10. april)     | 3 timer (2 timer går til brukerstøttekurs)     |
+| 16   | (**fagsamtale 1**) Mandag 13. april, onsdag 15. april, fredag 17. april     | 8-10 timer (dere får bruke brukerstøttetimene)      |
 | 17   | Onsdag 22. april, fredag 24. april     | 5 timer      |
 | 18   | (**fagsamtale 2**) Hovedfunksjonalitet skal være ferdig, men kan jobbe videre - mandag 27. april, onsdag 29. april     | 4 timer      |
 | 19   | Tverrfaglig prøveeksamen     | ...      |
