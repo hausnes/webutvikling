@@ -28,7 +28,10 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - **Teori:** 
     - Databaser og begreper. [Les guide](./guider/databaser/guide%20-%20begreper%20rundt%20databaser.md)
     - Hvorfor ikke bruke mange-til-mange-forhold (N:M) i databaseene våre? [Les guide](./guider/databaser/guide%20-%20mange-til-mange%20hvorfor%20ikke.md)
-- **Spørringer**, SQL (`S`tructured `Q`uery `L`anguage). [Les guide](./guider/databaser/guide%20-%20sql.md)
+- **Spørringer**, SQL (`S`tructured `Q`uery `L`anguage): 
+    - Teori og eksempel: [Les guide](./guider/databaser/guide%20-%20sql.md)
+    - Elevlaget ressurs for å lære seg SQL (interaktive oppgaver): [SQL-oppgavebrett](https://sqlbrett.netlify.app/)
+    - Ressurs for å lære seg SQL: [SQLZOO](https://sqlzoo.net/)
 - **Oppgaver** i datamodellering og SQL: [Les oppgaver](./oppgaver/oppgaver%20-%20sql.md)
 - **MariaDB**: Hvordan sette opp og bruke MariaDB, en populær database, som alternativ til SQLite. [Les guide](./guider/databaser/mariadb-eksempel/README.md)
 - **Vennskap**, et eksempel på en selvrefererende relasjon, og hvordan modellere dette i en database. [Les guide](./guider/databaser/vennskap/README.md)
