@@ -44,7 +44,10 @@ Kriterier for høy måloppnåelse
 1. Teknisk utførelse og "best practice"
     - Arkitektur: Koden er modulær og logisk organisert (f.eks. ved bruk av ruter-filer i Express, og separasjon mellom logikk og database-spørringer). Bruker variabler, løkker, funksjoner, valgsetninger og andre programmeringskonsepter på en hensiktsmessig måte.
     - Sikkerhet og Robusthet: Applikasjonen håndterer feilsituasjoner på en god måte (feilhåndtering med if/else eller try/catch og meningsfulle feilmeldinger til brukeren). 
-    - Dokumentasjon: Koden er selvforklarende med god navngivning, og mer komplekse deler av koden er dokumentert med kommentarer som forklarer hvorfor koden gjør som den gjør.
+    - Dokumentasjon: 
+        - Koden er selvforklarende med god navngivning, og mer komplekse deler av koden er dokumentert med kommentarer som forklarer hvorfor koden gjør som den gjør. 
+        - Utviklingsdokumentasjonen oppfyller kravene beskrevet ovenfor, og gir en god oversikt over prosjektet, teknologiene som er brukt, og designvalg som er gjort.
+        - Bruker markdown-syntaks på en god måte (overskrifter, lister, kodeblokker, lenker, bilder av eksempelvis datamodell etc.) for å gjøre dokumentasjonen lett å lese og navigere.
     - Datamodell: Databasen har en gjennomtenkt datamodell med minst tre tabeller og relasjoner som reflekterer virkelige sammenhenger i dataene. Du kan forklare datamodellen og begrunne designvalg i dokumentasjonen, med referanse til teori om datamodellering (f.eks. normalisering).
     - Bruk av Git: Koden er kontinuerlig oppdatert i et Git-repositorium, med meningsfulle commit-meldinger som reflekterer endringene som er gjort.
 
