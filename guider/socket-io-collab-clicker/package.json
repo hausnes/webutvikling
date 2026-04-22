@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "node app.js",
-    "test": "echo \"No tests configured\""
+    "dev": "node app.js"
   },
   "keywords": [],
   "author": "",
