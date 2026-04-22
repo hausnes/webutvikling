@@ -16,6 +16,7 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - Eksempelprosjekt **spillsamling**, med fokus på å sende parameter med i URL, og å bygge en nettside dynamisk. [Les guide](./guider/guide%20-%20spillsamling%20dynamisk.md)
 - Eksempelprosjekt **biler**, om innlogging, hashing, sessions og middleware. [Les guide](./guider/guide%20-%20session%20og%20middleware.md)
 - Eksempelprosjekt **multer-bilder**, om opplasting av bilder, og hvordan frontend og backend samarbeider i dette. [Les guide](./eksempel/nodejs/multer-bilder/README.md)
+- Eksempelprosjekt **socket.io, samarbeidsklikker**, om å sende og motta data i sanntid mellom flere klienter. [Les guide](./guider/socket-io-collab-clicker/)
 
 ### Github
 - Hvordan sette opp GitHub, lage din egen nettside og publisere den slik at du (og andre) kan besøke den fra mobil, PC el.l.! [Les guide](./guider/github/guide%20-%20github%20og%20github%20desktop.md)
