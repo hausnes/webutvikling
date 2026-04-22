@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="no">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Socket.IO Cookie Clicker</title>
+		<link rel="stylesheet" href="/style.css" />
+        <!-- NB: den første linjen under er ikke en fysisk fil, men en virtuell URL for socket IO -->
+        <script src="/socket.io/socket.io.js" defer></script> 
+		<script src="/index.js" defer></script>
+	</head>
+	<body>
+		<main class="app">
+			<h1>Collaborative Cookie Clicker</h1>
+			<p class="subtitle">Alle i klassen klikker pa samme cookie.</p>
+
+			<section class="card">
+				<label for="nameInput">Ditt navn</label>
+				<div class="name-row">
+					<input id="nameInput" maxlength="24" placeholder="f.eks. Nora" />
+					<button id="saveNameBtn" type="button">Lagre navn</button>
+				</div>
+			</section>
+
+			<section class="card center">
+				<p class="total-label">Total klikk</p>
+				<p id="totalClicks" class="total-value">0</p>
+				<button id="cookieBtn" class="cookie" type="button" aria-label="Klikk pa cookie">
+					Cookie +1
+				</button>
+			</section>
+
+			<section class="card">
+				<h2>Bidragsliste</h2>
+				<ol id="playersList" class="players"></ol>
+			</section>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "socket-io",
+  "version": "1.0.0",
+  "description": "Simple Socket.IO collaborative cookie clicker demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js",
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.1"
+  }
+}
