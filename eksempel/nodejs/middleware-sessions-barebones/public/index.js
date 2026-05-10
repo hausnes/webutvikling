@@ -10,6 +10,7 @@ async function leggTilPerson(event) {
     const fornavn = document.getElementById("fornavn").value;
     const etternavn = document.getElementById("etternavn").value;
     const passord = document.getElementById("passord").value;
+    const rolle = document.getElementById("rolle").value;
 
     alert(fornavn + etternavn + passord);
 
@@ -21,7 +22,8 @@ async function leggTilPerson(event) {
         body: JSON.stringify({
             fornavn,
             etternavn,
-            passord
+            passord,
+            rolle
         })
     });
 

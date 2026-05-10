@@ -21,7 +21,8 @@ db.exec(`CREATE TABLE IF NOT EXISTS person (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     fornavn TEXT,
     etternavn TEXT,
-    passord TEXT
+    passord TEXT,
+    rolle TEXT DEFAULT 'vanlig'
 )`);
 
 // Middleware for sessions
@@ -47,6 +48,28 @@ function kreverInnlogging(req, res, next) {
     next(); // Brukaren er logga inn, gå vidare
 }
 
+// Middleware som krever admin-rolle
+function kreverAdmintilgang(req, res, next) {
+    if (!req.session.bruker) {
+        return res.redirect("/");
+    }
+    if (req.session.bruker.rolle !== 'admin') {
+        return res.status(403).json({ message: "Ingen tilgang – krever admin-rolle" });
+    }
+    next();
+}
+
+// Middleware som krever support-rolle
+function kreverSupport(req, res, next) {
+    if (!req.session.bruker) {
+        return res.redirect("/");
+    }
+    if (req.session.bruker.rolle !== 'support') {
+        return res.status(403).json({ message: "Ingen tilgang – krever support-rolle" });
+    }
+    next();
+}
+
 // Eksempel på rute som viser deg index.html fra public-mappen (alltid tilgjengelig)
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -55,11 +78,23 @@ app.get("/", (req, res) => {
 // Beskyttet rute som krever innlogging, her gjør vi alle filer fra beskyttet-mappen tilgjengelig
 app.use('/beskyttet', kreverInnlogging, express.static(path.join(__dirname, 'beskyttet')));
 
-// Beskyttet rute som viser alle data om brukeren
+// Beskyttet rute som viser alle data om brukeren (kun egne data)
 app.get("/api/minside", kreverInnlogging, (req, res) => {
     const brukerId = req.session.bruker.id;
-    const bruker = db.prepare("SELECT id, fornavn, etternavn, passord FROM person WHERE id = ?").get(brukerId);
+    const bruker = db.prepare("SELECT id, fornavn, etternavn, passord, rolle FROM person WHERE id = ?").get(brukerId);
     res.json({ bruker });
+});
+
+// Admin-rute: henter all informasjon om alle brukere
+app.get("/api/admin/brukere", kreverAdmintilgang, (req, res) => {
+    const brukere = db.prepare("SELECT id, fornavn, etternavn, passord, rolle FROM person").all();
+    res.json({ brukere });
+});
+
+// Support-rute: henter kun fornavn og etternavn for alle brukere
+app.get("/api/support/brukere", kreverSupport, (req, res) => {
+    const brukere = db.prepare("SELECT fornavn, etternavn FROM person").all();
+    res.json({ brukere });
 });
 
 // Rute for å legge til ein ny person
@@ -77,8 +112,12 @@ app.post("/api/leggtilperson", async (req, res) => {
         const saltRounds = 10;
         const hashPassord = await bcrypt.hash(passord, saltRounds);
 
-        const stmt = db.prepare("INSERT INTO person (fornavn, etternavn, passord) VALUES (?, ?, ?)");
-        const info = stmt.run(fornavn, etternavn, hashPassord);
+        const rolle = req.body.rolle && ['admin', 'support', 'vanlig'].includes(req.body.rolle)
+            ? req.body.rolle
+            : 'vanlig';
+
+        const stmt = db.prepare("INSERT INTO person (fornavn, etternavn, passord, rolle) VALUES (?, ?, ?, ?)");
+        const info = stmt.run(fornavn, etternavn, hashPassord, rolle);
 
         res.status(201).json({ message: "Ny bruker opprettet", id: info.lastInsertRowid });
     } catch (error) {
@@ -102,7 +141,7 @@ app.post("/api/login", async (req, res) => {
     }
 
     // Lagre brukerdata i session
-    req.session.bruker = { id: bruker.id, fornavn: bruker.fornavn };
+    req.session.bruker = { id: bruker.id, fornavn: bruker.fornavn, rolle: bruker.rolle };
     res.json({ message: "Innlogging vellykket" });
 });
 
