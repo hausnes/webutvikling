@@ -85,17 +85,42 @@ app.get("/api/minside", kreverInnlogging, (req, res) => {
     res.json({ bruker });
 });
 
-// Admin-rute: henter all informasjon om alle brukere
-app.get("/api/admin/brukere", kreverAdmintilgang, (req, res) => {
+// Middleware som er mer generell, og kan brukes for alle mulige roller - og som er lett å utvide i framtiden
+function kreverRolle(...roller) {
+    return (req, res, next) => {
+        if (!req.session.bruker) {
+            return res.redirect("/");
+        }
+        if (!roller.includes(req.session.bruker.rolle)) {
+            return res.status(403).json({ message: "Ingen tilgang" });
+        }
+        next();
+    };
+}
+
+// Ny måte: Admin-rute: henter all informasjon om alle brukere
+app.get("/api/admin/brukere", kreverRolle('admin'), (req, res) => {
     const brukere = db.prepare("SELECT id, fornavn, etternavn, passord, rolle FROM person").all();
     res.json({ brukere });
 });
 
-// Support-rute: henter kun fornavn og etternavn for alle brukere
-app.get("/api/support/brukere", kreverSupport, (req, res) => {
+// Gammel måte: Admin-rute: henter all informasjon om alle brukere
+// app.get("/api/admin/brukere", kreverAdmintilgang, (req, res) => {
+//     const brukere = db.prepare("SELECT id, fornavn, etternavn, passord, rolle FROM person").all();
+//     res.json({ brukere });
+// });
+
+// Ny måte: Support-rute: henter kun fornavn og etternavn for alle brukere
+app.get("/api/support/brukere", kreverRolle('support', 'admin'), (req, res) => { // NB: Se at både support og admin har tilgang til denne ruten!
     const brukere = db.prepare("SELECT fornavn, etternavn FROM person").all();
     res.json({ brukere });
 });
+
+// Gammel måte: Support-rute: henter kun fornavn og etternavn for alle brukere
+// app.get("/api/support/brukere", kreverSupport, (req, res) => {
+//     const brukere = db.prepare("SELECT fornavn, etternavn FROM person").all();
+//     res.json({ brukere });
+// });
 
 // Rute for å legge til ein ny person
 app.post("/api/leggtilperson", async (req, res) => {
