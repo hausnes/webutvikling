@@ -48,26 +48,39 @@ function kreverInnlogging(req, res, next) {
     next(); // Brukaren er logga inn, gå vidare
 }
 
-// Middleware som krever admin-rolle
-function kreverAdmintilgang(req, res, next) {
-    if (!req.session.bruker) {
-        return res.redirect("/");
-    }
-    if (req.session.bruker.rolle !== 'admin') {
-        return res.status(403).json({ message: "Ingen tilgang – krever admin-rolle" });
-    }
-    next();
-}
+// Gammel middleware som krever admin-rolle
+// function kreverAdmintilgang(req, res, next) {
+//     if (!req.session.bruker) {
+//         return res.redirect("/");
+//     }
+//     if (req.session.bruker.rolle !== 'admin') {
+//         return res.status(403).json({ message: "Ingen tilgang – krever admin-rolle" });
+//     }
+//     next();
+// }
 
-// Middleware som krever support-rolle
-function kreverSupport(req, res, next) {
-    if (!req.session.bruker) {
-        return res.redirect("/");
-    }
-    if (req.session.bruker.rolle !== 'support') {
-        return res.status(403).json({ message: "Ingen tilgang – krever support-rolle" });
-    }
-    next();
+// Gammel middleware som krever support-rolle
+// function kreverSupport(req, res, next) {
+//     if (!req.session.bruker) {
+//         return res.redirect("/");
+//     }
+//     if (req.session.bruker.rolle !== 'support') {
+//         return res.status(403).json({ message: "Ingen tilgang – krever support-rolle" });
+//     }
+//     next();
+// }
+
+// Middleware som er mer generell, som kan brukes for alle mulige roller - og som er lett å utvide i fremtiden
+function kreverRolle(...roller) {
+    return (req, res, next) => {
+        if (!req.session.bruker) { // Dersom brukeren ikke har en session (er logga inn)
+            return res.redirect("/");
+        }
+        if (!roller.includes(req.session.bruker.rolle)) { // Dersom brukeren sin rolle ikke er i listen over roller som har tilgang
+            return res.status(403).json({ message: "Ingen tilgang" });
+        }
+        next();
+    };
 }
 
 // Eksempel på rute som viser deg index.html fra public-mappen (alltid tilgjengelig)
@@ -84,19 +97,6 @@ app.get("/api/minside", kreverInnlogging, (req, res) => {
     const bruker = db.prepare("SELECT id, fornavn, etternavn, passord, rolle FROM person WHERE id = ?").get(brukerId);
     res.json({ bruker });
 });
-
-// Middleware som er mer generell, og kan brukes for alle mulige roller - og som er lett å utvide i framtiden
-function kreverRolle(...roller) {
-    return (req, res, next) => {
-        if (!req.session.bruker) {
-            return res.redirect("/");
-        }
-        if (!roller.includes(req.session.bruker.rolle)) {
-            return res.status(403).json({ message: "Ingen tilgang" });
-        }
-        next();
-    };
-}
 
 // Ny måte: Admin-rute: henter all informasjon om alle brukere
 app.get("/api/admin/brukere", kreverRolle('admin'), (req, res) => {
