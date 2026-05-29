@@ -1,0 +1,163 @@
+
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vurderingskriterier for IT1</title>
+  <style>
+    :root { --col-km: 220px; }
+    .wrap { padding: 1rem 0; font-size: 13px; }
+    h2.section { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin: 1.5rem 0 0.5rem; padding-bottom: 6px; border-bottom: 1.5px solid var(--color-border-primary); }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-bottom: 1rem; }
+    col.c-km { width: 200px; }
+    col.c-lav { width: 160px; }
+    col.c-mid { width: 160px; }
+    col.c-hoy { width: 160px; }
+    th { background: var(--color-background-secondary); color: var(--color-text-secondary); font-weight: 500; font-size: 12px; text-align: left; padding: 8px 10px; border: 0.5px solid var(--color-border-tertiary); }
+    td { vertical-align: top; padding: 8px 10px; border: 0.5px solid var(--color-border-tertiary); color: var(--color-text-primary); line-height: 1.5; }
+    .km { color: var(--color-text-secondary); font-size: 12px; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; }
+    .lav { background: #FAECE7; color: #993C1D; }
+    .mid { background: #FAEEDA; color: #854F0B; }
+    .hoy { background: #EAF3DE; color: #3B6D11; }
+    .over-lav { background: #E6F1FB; color: #185FA5; }
+    tr:hover td { background: var(--color-background-secondary); }
+    .char-col { text-align: center; font-size: 18px; font-weight: 500; color: var(--color-text-secondary); border-right: 0.5px solid var(--color-border-tertiary); }
+    @media (prefers-color-scheme: dark) {
+        .lav { background: #4A1B0C; color: #F0997B; }
+        .mid { background: #412402; color: #EF9F27; }
+        .hoy { background: #173404; color: #97C459; }
+        .over-lav { background: #042C53; color: #85B7EB; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+<h2 class="sr-only" style="position:absolute;left:-9999px">Vurderingsskjema for IT1-eksamen</h2>
+
+<h2 class="section">Del 1 – Teknisk løsning og programkode</h2>
+<table>
+  <colgroup><col class="c-km"><col class="c-lav"><col class="c-mid"><col class="c-hoy"></colgroup>
+  <thead>
+    <tr>
+      <th>Kompetansemål</th>
+      <th><span class="badge lav">Lav måloppnåelse</span><br>Karakter 2</th>
+      <th><span class="badge mid">Middels måloppnåelse</span><br>Karakter 3–4</th>
+      <th><span class="badge hoy">Høy måloppnåelse</span><br>Karakter 5–6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="km">Utvikle nettsider ved hjelp av markeringsspråk</td>
+      <td>HTML er til stede, men struktur og semantikk mangler eller er feil brukt</td>
+      <td>Gyldig HTML med semantiske elementer; CSS gir et lesbart og konsistent uttrykk</td>
+      <td>Gjennomgående semantisk og tilgjengelig HTML; CSS er godt strukturert og responsivt</td>
+    </tr>
+    <tr>
+      <td class="km">Lagre og hente fram data, presentere data på nettsider</td>
+      <td>Data hentes eller lagres, men presentasjonen er mangelfull eller statisk</td>
+      <td>Data lagres i og hentes fra database via SQL; vises dynamisk i frontend med fetch og DOM-manipulasjon</td>
+      <td>Fullstendig CRUD-flyt med tydelig separasjon av frontend og backend; data presenteres hensiktsmessig og oversiktlig</td>
+    </tr>
+    <tr>
+      <td class="km">Planlegge og lage nettsider som tar hensyn til brukervennlighet og universell utforming</td>
+      <td>Løsningen er vanskelig å navigere; mangler grunnleggende tilgjengelighetstiltak</td>
+      <td>Løsningen er oversiktlig og logisk strukturert; noe hensyn til kontrastforhold og navigasjon</td>
+      <td>Bevisste og velbegrunnede valg for UX og universell utforming (WCAG); tydelig vurdering av brukerbehov</td>
+    </tr>
+    <tr>
+      <td class="km">Utvikle prosedyreorienterte programmer med prosedyrer med og uten parametre og returverdier</td>
+      <td>Koden er lite strukturert; prosedyrer eller funksjoner mangler eller er ikke funksjonelle</td>
+      <td>Koden bruker funksjoner med og uten parametre/returverdier på en hensiktsmessig måte</td>
+      <td>Velstrukturert kode med gjenbrukbare funksjoner; tydelig separasjon av ansvar mellom funksjoner</td>
+    </tr>
+    <tr>
+      <td class="km">Utforske, strukturere og kommentere programkode</td>
+      <td>Lite eller ingen kommentering; koden er vanskelig å følge</td>
+      <td>Koden er strukturert og har kommentarer som forklarer sentrale deler</td>
+      <td>Gjennomgående ryddig og godt kommentert kode; eleven reflekterer over egne valg</td>
+    </tr>
+    <tr>
+      <td class="km">Beskrive ulike typer algoritmer og vurdere effektiviteten av egen programkode</td>
+      <td>Eleven beskriver algoritmer overfladisk; gjør ikke rede for effektivitet</td>
+      <td>Eleven forklarer algoritmene i løsningen og gjør enkle vurderinger av effektivitet</td>
+      <td>Eleven analyserer og begrunner valg av algoritmer; vurderer tids- og ressursbruk og viser innsikt i optimalisering</td>
+    </tr>
+    <tr>
+      <td class="km">Bruke algoritmisk tenkning og programmering for å utforske en problemstilling og presentere resultatet</td>
+      <td>Løsningen er delvis implementert; sammenhengen mellom problemstilling og kode er uklar</td>
+      <td>Problemstillingen er løst med fungerende kode; presentasjonen av resultatet er forståelig</td>
+      <td>Løsningen er gjennomtenkt og fullstendig; eleven begrunner valg og kobler kode tydelig til problemstillingen</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section">Del 2 – Datastruktur og digital representasjon</h2>
+<table>
+  <colgroup><col class="c-km"><col class="c-lav"><col class="c-mid"><col class="c-hoy"></colgroup>
+  <thead>
+    <tr>
+      <th>Kompetansemål</th>
+      <th><span class="badge lav">Lav måloppnåelse</span><br>Karakter 2</th>
+      <th><span class="badge mid">Middels måloppnåelse</span><br>Karakter 3–4</th>
+      <th><span class="badge hoy">Høy måloppnåelse</span><br>Karakter 5–6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="km">Gjøre rede for og vurdere hvordan ulike typer informasjon kan representeres digitalt og struktureres ved hjelp av datalagringsmetoder</td>
+      <td>Eleven nevner at data lagres, men forklarer ikke valg av struktur</td>
+      <td>Eleven forklarer oppbygging av tabeller og felt, og begrunner valg av datatyper</td>
+      <td>Eleven vurderer alternative lagringsformer, begrunner relasjoner mellom tabeller og reflekterer over datastrukturen</td>
+    </tr>
+    <tr>
+      <td class="km">Beskrive sentrale komponenter i datamaskiner og nettverk og gjøre rede for funksjon</td>
+      <td>Overfladisk beskrivelse; kobling til løsningen mangler</td>
+      <td>Eleven gjør rede for relevante komponenter (server, klient, nettverk) i sammenheng med løsningen</td>
+      <td>Eleven forklarer klart og presist samspillet mellom komponenter, inkl. klient-server-modellen og nettverksprotokoller</td>
+    </tr>
+    <tr>
+      <td class="km">Lagre og hente fram data – reflektere over representasjonsform og tolkning</td>
+      <td>Ingen eller overfladisk refleksjon over hvordan presentasjonsform påvirker tolkning</td>
+      <td>Eleven viser at valg av presentasjonsform (tabell, liste, graf) påvirker brukernes oppfattelse av data</td>
+      <td>Eleven drøfter bevisst valg av representasjonsform og kobler dette til brukervennlighet og informasjonsformidling</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section">Del 3 – Samfunn, personvern og etikk</h2>
+<table>
+  <colgroup><col class="c-km"><col class="c-lav"><col class="c-mid"><col class="c-hoy"></colgroup>
+  <thead>
+    <tr>
+      <th>Kompetansemål</th>
+      <th><span class="badge lav">Lav måloppnåelse</span><br>Karakter 2</th>
+      <th><span class="badge mid">Middels måloppnåelse</span><br>Karakter 3–4</th>
+      <th><span class="badge hoy">Høy måloppnåelse</span><br>Karakter 5–6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="km">Gjøre rede for gjeldende personvernregelverk og konsekvenser for utvikling av IT</td>
+      <td>GDPR nevnes, men uten forklaring av relevans for løsningen</td>
+      <td>Eleven gjør rede for GDPR-prinsipper og identifiserer konkrete konsekvenser for løsningen</td>
+      <td>Eleven drøfter GDPR inngående, beskriver tiltak i koden og vurderer brukerens rettigheter opp mot løsningens design</td>
+    </tr>
+    <tr>
+      <td class="km">Drøfte problemstillinger knyttet til innhenting, bruk og misbruk av data</td>
+      <td>Eleven nevner at data kan misbrukes uten videre analyse</td>
+      <td>Eleven drøfter konkrete problemstillinger tilknyttet løsningens datainnsamling og bruk</td>
+      <td>Eleven analyserer mulige konsekvenser av datainnsamling fra ulike perspektiver og foreslår tiltak</td>
+    </tr>
+    <tr>
+      <td class="km">Drøfte dagsaktuelle temaer knyttet til hvordan IT påvirker individet og samfunnet</td>
+      <td>Eleven berører tema overfladisk uten kobling til faglig kunnskap</td>
+      <td>Eleven knytter løsningen til relevante samfunnsmessige problemstillinger med faglige begreper</td>
+      <td>Eleven drøfter nyansert og selvstendig hvordan løsningen og lignende teknologi påvirker enkeltpersoner og samfunnet</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>
