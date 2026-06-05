@@ -40,6 +40,13 @@ app.use(
     })
 );
 
+// Middleware for å logge alle innkommende og utgående requests (for debugging)
+//  Skal logge: tidspunkt, http-metode, body og url og hvilken bruker
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} - Body: ${JSON.stringify(req.body)} - Bruker: ${req.session.bruker ? req.session.bruker.fornavn : "Ingen"}`);
+    next();
+});
+
 // Middleware for å beskytte sider bak "innloggings-mur"
 function kreverInnlogging(req, res, next) {
     if (!req.session.bruker) { // Dersom brukaren ikkje har ein session (er logga inn)
