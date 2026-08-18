@@ -24,6 +24,7 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - Github og lisensiering: Hvilke regler gjelder, og brukes din kode for å trene opp KI-modeller?: [Les guide](./guider/github/guide%20-%20github%20og%20lisensiering.md)
 
 ### Databaser og SQL
+- **Datamodellering**, med gjennomgang av begreper, og eksempler på hvordan man kan modellere ulike tjenester. [Les guide](./guider/databaser/datamodellering/datamodellering.md)
 - **Fjellturer**, et eksempel "fra start til slutt". Fra datamodell til database, og en enkel webapplikasjon som bruker denne databasen. [Les guide](./guider/databaser/fjelltur-eksempel/README.md)
     - "Innebygd" i denne guiden er det også en egen del tilknyttet SQL, med oppgaver og løsningsforslag. [Les guide](./guider/databaser/fjelltur-eksempel/SQL%20-%20oppgaver%20og%20l%C3%B8sningsforslag.md)
 - **Teori:** 
