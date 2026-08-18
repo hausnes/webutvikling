@@ -142,3 +142,14 @@ Dette er mer komplisert, og noe vi først forfølger senere i kurset.
 ### Oppsummering
 
 Det disse tre eksemplene har til felles, er at en stor tjeneste sjelden (eller aldri) lagrer alt i én tabell. I stedet identifiserer man de ulike **entitetene** i systemet (bruker, vare, innlegg, sang, osv.), lager én tabell per entitet, og bruker fremmednøkler for å knytte dem sammen der det er en sammenheng. Dette er selve kjernen i datamodellering: å finne ut hvilke «ting» systemet handler om, og hvordan disse tingene henger sammen.
+
+## Oppgaver
+
+Se på ulike tjenester du bruker, og tenk gjennom hva de må lagre av informasjon. Hvordan ville du organisert dette i tabeller, slik at informasjonen ikke gjentas unødvendig? Hvilke fremmednøkler trengs for å knytte tabellene sammen?
+
+Eksempelvis:
+- IMDB (https://www.imdb.com/) — hva må de lagre om filmer, skuespillere, regissører, anmeldelser, brukere, osv.?
+- Adams Matkasse (https://www.adamsmatkasse.no/) — hva må de lagre om kunder, bestillinger, oppskrifter, ingredienser, osv.?
+- Vy (https://www.vy.no/) — hva må de lagre om kunder, billetter, togavganger, stasjoner, osv.?
+- Finn.no (https://www.finn.no/) — hva må de lagre om brukere, annonser, bilder, meldinger, osv.?
+- Finn andre tjenester du bruker, og tenk gjennom hvordan de kan ha organisert dataene sine i tabeller.
