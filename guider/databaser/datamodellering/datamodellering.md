@@ -43,7 +43,7 @@ Resultatet er at når vi registrerer en ny person, trenger vi bare å oppgi post
 
 Nå skal vi tegne dette som en datamodell. Vi kaller dette for et entitets-relasjonsdiagram (ER-diagram). Vi kan for eksempel bruke [draw.io](https://draw.io), med de to tabellene og linjen som viser fremmednøkkel-relasjonen mellom dem.
 
-Tegning kommer...
+![datamodell-person-postadresse](person-postadresse.png)
 
 ## Store tjenester er bygget opp av mange små tabeller
 
