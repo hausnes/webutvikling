@@ -254,14 +254,12 @@ Tell hvor mange turer det har vært totalt i 2025 for seg, og 2026 for seg. **NB
 <summary>Løsningsforslag:</summary>
 
 ```sql
-SELECT *
+SELECT strftime('%Y', fjelltur.tidspunkt) AS aar, COUNT(*) AS antall_turer
 FROM fjelltur
-WHERE strftime('%Y', fjelltur.tidspunkt) = '2025';
-
-SELECT *
-FROM fjelltur
-WHERE strftime('%Y', fjelltur.tidspunkt) = '2026';
+GROUP BY aar;
 ```
+
+NB: Du kan også løse dette med to separate spørringer (én med `WHERE strftime('%Y', tidspunkt) = '2025'` og én for `'2026'`, begge med `COUNT(*)`), men løsningen over viser bedre hvordan `GROUP BY` kan brukes til å telle per gruppe i én og samme spørring.
 
 </details>
 

@@ -50,6 +50,8 @@ NB: Kommentarene er ikke grundige nok til å forklare alle deler av modellen, me
 
 NB2: Her kan man bare gå et fjell per tur, og det kan ikke gå flere personer på samme tur. Dette er for å gjøre det enklere å lage datamodellen, og senere databasen, men det er ikke nødvendigvis slik det må være i en virkelig applikasjon. Det er helt greit å utvide datamodellen, og gjøre den mer kompleks, hvis du ønsker det. Det viktigste er at du forstår hvordan de forskjellige delene henger sammen, og at du kan forklare det.
 
+NB3: `fjelltur.db` inneholder også en `bilde`-tabell med noen testrader (bilder knyttet til en fjelltur), men de faktiske bildefilene disse radene peker på er ikke lagt ved i prosjektet. Dette er fordi vi ikke bruker denne tabellen i webapplikasjonen ennå - se ["Videre arbeid"](#videre-arbeid) for et forslag om å bygge ut løsningen med dette.
+
 ## Lage databasen
 
 Bruk SQLite3, eller andre verktøy du er komfortabel med, for å lage databasen basert på datamodellen du har laget.
@@ -144,7 +146,7 @@ const cors = require('cors');
 app.use(cors());
 
 // Eksempel på en rute som henter alle fjell, beskrivelse, høydene og bilde deres
-app.get('/api/fjell_info', (req, res) => {
+app.get('/api/fjell', (req, res) => {
     const rows = db.prepare('SELECT fjellnavn, hoyde, beskrivelse, foto FROM fjell').all();
     res.json(rows);
 });
@@ -157,7 +159,7 @@ app.listen(PORT, () => {
 
 Du starter serveren ved å kjøre `node app.js` i terminalen.
 
-Kontroller at serveren starter uten feil, at du kan nå `http://localhost:3000/api/fjell_info` i nettleseren, og se dataene fra databasen. Hvilket format får du dataene i? Hvordan kan du bruke dette i en frontend-applikasjon senere?
+Kontroller at serveren starter uten feil, at du kan nå `http://localhost:3000/api/fjell` i nettleseren, og se dataene fra databasen. Hvilket format får du dataene i? Hvordan kan du bruke dette i en frontend-applikasjon senere?
 
 ## Frontend-applikasjon: Vise alle fjellene
 
@@ -181,7 +183,7 @@ I `index.html` kan du lage en enkel struktur for å vise dataene, og inkludere `
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nb">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -199,7 +201,7 @@ I `index.js` kan du bruke `fetch` for å hente data fra API-et ditt, og vise det
 
 ```javascript
 async function fetchData() {
-    const response = await fetch('http://localhost:3000/api/fjell_info');
+    const response = await fetch('/api/fjell');
     const data = await response.json();
     console.log(data);
     
@@ -215,7 +217,7 @@ fetchData();
 ```javascript
     for (let fjell of data) {
         let fjellDiv = document.createElement('div');
-        fjellDiv.classList.add('fjell');
+        fjellDiv.classList.add('kort');
         fjellDiv.innerHTML = `
             <h3>${fjell.fjellnavn}</h3>
             <p>Høyde: ${fjell.hoyde} meter</p>
@@ -244,7 +246,7 @@ Legg til følgende rute i `app.js`:
 
 ```javascript
 // Eksempel på en rute som henter alle brukernavnene til alle personene i databasen
-app.get('/api/personer_alle', (req, res) => {
+app.get('/api/personer', (req, res) => {
     const rows = db.prepare('SELECT brukernavn FROM person').all();
     res.json(rows);
 });
@@ -255,11 +257,11 @@ Merk at vi her bare henter ut `brukernavn`-kolonnen, og ikke andre kolonner som 
 Deretter lager vi klar HTML-koden i en fil vi kaller `eks-fjellturer-for-person.html`, som inneholder en dropdown-meny for å velge person, og en container for å vise fjellturene til den valgte personen. Denne filen legger du i `public`-mappen.:
 
 ```html
-<html lang="en">
+<html lang="nb">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fjellturer for person</title>
     <script src="eks-fjellturer-for-person.js" defer></script>
     <link rel="stylesheet" href="eks-fjellturer-for-person.css">
 </head>
@@ -308,7 +310,6 @@ Legg til følgende rute i `app.js`:
 ```javascript
 app.get('/api/fjellturer/:brukernavn', (req, res) => {
     const brukernavn = req.params.brukernavn;
-    if (!brukernavn) return res.status(400).json({ error: 'Mangler brukernavn' });
 
     const rows = db.prepare(`
         SELECT fjell.fjellnavn
@@ -322,7 +323,7 @@ app.get('/api/fjellturer/:brukernavn', (req, res) => {
 });
 ```
 
-Ruten over tar inn et `brukernavn` som en URL-parameter, og bruker dette for å hente ut alle fjellene som denne personen har gått på.
+Ruten over tar inn et `brukernavn` som en URL-parameter, og bruker dette for å hente ut alle fjellene som denne personen har gått på. Merk at vi ikke trenger å sjekke om `brukernavn` mangler her: Express kaller aldri denne ruten uten at `:brukernavn`-delen av URL-en er fylt ut, så en slik sjekk ville aldri slått til.
 
 Det du nettopp gjorde oppleves kanskje litt vanskelig, men tenk på alternativet, der du måtte lage en ny rute for hver person du vil hente ut fjellturene til, og hardkode navnet på personen i SQL-spørringen. Det ville vært en særs tungvint løsning, og det er derfor vi bruker URL-parametere (som `:brukernavn` i ruten) for å gjøre det mer fleksibelt.
 
@@ -330,7 +331,7 @@ Det du nettopp gjorde oppleves kanskje litt vanskelig, men tenk på alternativet
 // Eksempel om å hente alle fjellene som en gitt person har gått
 // Et alternativ som er en veldig dårlig løsning, fordi vi hardkoder navnet på personen i SQL-spørringen,
 // og da må vi lage en ny rute for hver person vi vil hente ut fjellene til
-app.get('/api/fjellturar_hausnes', (req, res) => {
+app.get('/api/fjellturer_hausnes', (req, res) => {
     const rows = db.prepare(`
         SELECT fjell.fjellnavn 
         FROM person 
@@ -553,7 +554,7 @@ I Express, bruk ruten du laget tidligere i `app.js` for å hente ut alle persone
 
 ```javascript
 // Eksempel på en rute som henter alle brukernavnene til alle personene i databasen
-app.get('/api/personer_alle', (req, res) => {
+app.get('/api/personer', (req, res) => {
     const rows = db.prepare('SELECT brukernavn FROM person').all();
     res.json(rows);
 });
@@ -564,7 +565,7 @@ I filen `eks-registrere-ny-tur.js` legger du til følgende kode for å hente ut 
 ```javascript
 // Kode for å fylle ut en dropdown med alle brukernavn
 async function hentPersoner() {
-    const response = await fetch('/api/personer_alle');
+    const response = await fetch('/api/personer');
     const personer = await response.json();
     console.log(personer); // Sjekker at vi har fått data tilbake
 
@@ -591,7 +592,7 @@ I Express, legg til følgende rute i `app.js` for å hente ut alle fjell:
 
 ```javascript
 // Eksempel på en rute som henter alle fjellnavnene som finnes i databasen
-app.get('/api/fjell_alle', (req, res) => {
+app.get('/api/fjell/navn', (req, res) => {
     const rows = db.prepare('SELECT fjellnavn FROM fjell').all();
     res.json(rows);
 });
@@ -602,7 +603,7 @@ I filen `eks-registrere-ny-tur.js` legger du til følgende kode for å hente ut 
 ```javascript
 // Kode for å hente alle fjellene som er registrert i databasen og fylle ut en dropdown med disse
 async function hentFjellnavn() {
-    const response = await fetch('/api/fjell_alle');
+    const response = await fetch('/api/fjell/navn');
     const fjell = await response.json();
     console.log(fjell); // Sjekker at vi har fått data tilbake
 
@@ -662,7 +663,7 @@ Løsningsforslag, legg til rute i`app.js`:
 
 ```javascript
 // Rute som lar oss registrere en ny fjelltur for en person
-app.post('/api/registrer_tur', express.json(), (req, res) => {
+app.post('/api/fjellturer', express.json(), (req, res) => {
     // Henter ut data fra request body (det som klienten har sendt inn)
     const { brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse } = req.body;
 
@@ -675,13 +676,13 @@ app.post('/api/registrer_tur', express.json(), (req, res) => {
     if (!fjell) return res.status(404).json({ error: 'Fjell ikke funnet' });
 
     // Registrer den nye fjellturen
-    db.prepare('INSERT INTO fjelltur (brukernavn, fjell_id, tidspunkt, varighet, beskrivelse) VALUES (?, ?, ?, ?, ?)').run(brukernavn, fjell.fjell_id, tidspunkt, varighet, beskrivelse);
+    db.prepare('INSERT INTO fjelltur (brukernavn, fjell_id, tidspunkt, varighet, beskrivelse) VALUES (?, ?, ?, ?, ?)').run(brukernavn, fjell.fjell_id, tidspunkt, Number(varighet), beskrivelse);
 
     res.status(201).json({ message: 'Fjellturen er registrert!' });
 });
 ```
 
-Vi skal altså få data fra frontend (brukernavn, fjellnavn, tidspunkt, varighet og beskrivelse), sjekke at både personen og fjellet eksisterer i databasen, og deretter sette inn en ny rad i `fjelltur`-tabellen med denne informasjonen.
+Vi skal altså få data fra frontend (brukernavn, fjellnavn, tidspunkt, varighet og beskrivelse), sjekke at både personen og fjellet eksisterer i databasen, og deretter sette inn en ny rad i `fjelltur`-tabellen med denne informasjonen. Merk at vi bruker `Number(varighet)` for å konvertere varigheten fra tekst (slik den kommer fra form-feltet) til et tall, slik at den lagres riktig i databasen.
 
 Nå må vi utvide koden i event listeneren for form-submission i `eks-registrere-ny-tur.js` for å sende dataene til denne ruten via et POST-kall. Dette gjør vi ved å bruke `fetch` med `method: 'POST'`, og sende dataene i request body som JSON. Logikken bak dette er lik i alle tilfeller der du sender data, så det er bare å tilpasse i fremtidige situasjoner.
 
@@ -701,7 +702,7 @@ document.getElementById('ny-tur-form').addEventListener('submit', async function
     console.log({ brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse }); // Sjekker at vi har riktig data før vi sender det til serveren
 
     // Sender dataen til serveren via et POST-kall
-    const response = await fetch('/api/registrer_tur', {
+    const response = await fetch('/api/fjellturer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -726,11 +727,9 @@ Kontroller at du nå kan registrere en ny fjelltur ved å fylle ut skjemaet og t
 
 Lag flere ruter som henter ut forskjellige typer data, der du kan få inspirasjon fra SQL-oppgavene du har løst tidligere.
 
-### La brukeren legge til nye fjellturer
+### Legge til bilder for en fjelltur
 
-Lag en form i frontend-applikasjonen, der brukeren kan legge inn informasjon om en ny fjelltur, og deretter sende dette til serveren via et POST-kall. På serveren må du lage en rute som håndterer dette POST-kallet, og legger den nye fjellturen inn i databasen.
-
-Dette vil bli lagt til i en senere del av denne guiden.
+Databasen har allerede en `bilde`-tabell for å knytte ett eller flere bilder til en registrert fjelltur (se NB3 [tidligere i guiden](#eksempel-på-datamodell)), men denne brukes ikke i webapplikasjonen ennå. Bygg videre på løsningen slik at en bruker kan laste opp bilder til en fjelltur, og vise disse frem igjen.
 
 ### Stilsetting
 

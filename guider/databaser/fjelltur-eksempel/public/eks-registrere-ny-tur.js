@@ -1,6 +1,6 @@
 // Kode for å fylle ut en dropdown med alle brukernavn
 async function hentPersoner() {
-    const response = await fetch('/api/personer_alle');
+    const response = await fetch('/api/personer');
     const personer = await response.json();
     console.log(personer); // Sjekker at vi har fått data tilbake
 
@@ -20,7 +20,7 @@ hentPersoner();
 
 // Kode for å hente alle fjellene som er registrert i databasen og fylle ut en dropdown med disse
 async function hentFjellnavn() {
-    const response = await fetch('/api/fjell_alle');
+    const response = await fetch('/api/fjell/navn');
     const fjell = await response.json();
     console.log(fjell); // Sjekker at vi har fått data tilbake
 
@@ -53,7 +53,7 @@ document.getElementById('ny-tur-form').addEventListener('submit', async function
     console.log({ brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse }); // Sjekker at vi har riktig data før vi sender det til serveren
 
     // Sender dataen til serveren via et POST-kall
-    const response = await fetch('/api/registrer_tur', {
+    const response = await fetch('/api/fjellturer', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

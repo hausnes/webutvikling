@@ -16,19 +16,19 @@ const cors = require('cors');
 app.use(cors());
 
 // Eksempel på en rute som henter alle fjell, beskrivelse, høydene og bilde deres
-app.get('/api/fjell_info', (req, res) => {
+app.get('/api/fjell', (req, res) => {
     const rows = db.prepare('SELECT fjellnavn, hoyde, beskrivelse, foto FROM fjell').all();
     res.json(rows);
 });
 
 // Eksempel på en rute som henter alle fjellnavnene som finnes i databasen
-app.get('/api/fjell_alle', (req, res) => {
+app.get('/api/fjell/navn', (req, res) => {
     const rows = db.prepare('SELECT fjellnavn FROM fjell').all();
     res.json(rows);
 });
 
 // Eksempel på en rute som henter alle brukernavnene til alle personene i databasen
-app.get('/api/personer_alle', (req, res) => {
+app.get('/api/personer', (req, res) => {
     const rows = db.prepare('SELECT brukernavn FROM person').all();
     res.json(rows);
 });
@@ -36,7 +36,6 @@ app.get('/api/personer_alle', (req, res) => {
 // Rute som henter fjellturene til en gitt person, der vi bruker en URL-parameter
 app.get('/api/fjellturer/:brukernavn', (req, res) => {
     const brukernavn = req.params.brukernavn;
-    if (!brukernavn) return res.status(400).json({ error: 'Mangler brukernavn' });
 
     const rows = db.prepare(`
         SELECT fjell.fjellnavn, fjelltur.tidspunkt
@@ -50,7 +49,7 @@ app.get('/api/fjellturer/:brukernavn', (req, res) => {
 });
 
 // Rute som lar oss registrere en ny fjelltur for en person
-app.post('/api/registrer_tur', express.json(), (req, res) => {
+app.post('/api/fjellturer', express.json(), (req, res) => {
     // Henter ut data fra request body
     const { brukernavn, fjellnavn, tidspunkt, varighet, beskrivelse } = req.body;
 
@@ -63,7 +62,7 @@ app.post('/api/registrer_tur', express.json(), (req, res) => {
     if (!fjell) return res.status(404).json({ error: 'Fjell ikke funnet' });
 
     // Registrer den nye fjellturen
-    db.prepare('INSERT INTO fjelltur (brukernavn, fjell_id, tidspunkt, varighet, beskrivelse) VALUES (?, ?, ?, ?, ?)').run(brukernavn, fjell.fjell_id, tidspunkt, varighet, beskrivelse);
+    db.prepare('INSERT INTO fjelltur (brukernavn, fjell_id, tidspunkt, varighet, beskrivelse) VALUES (?, ?, ?, ?, ?)').run(brukernavn, fjell.fjell_id, tidspunkt, Number(varighet), beskrivelse);
 
     res.status(201).json({ message: 'Fjellturen er registrert!' });
 });

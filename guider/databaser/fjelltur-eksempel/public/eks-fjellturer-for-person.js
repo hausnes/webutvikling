@@ -1,6 +1,6 @@
 // Fyller ut en dropdown (select) med  brukernavnene på alle personene i databasen
 async function hentPersoner() {
-    const response = await fetch('/api/personer_alle');
+    const response = await fetch('/api/personer');
     const personer = await response.json();
     const dropdown = document.getElementById('personDropdown');
     
