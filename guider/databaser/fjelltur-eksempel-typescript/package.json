@@ -1,0 +1,29 @@
+{
+  "name": "fjelltur-eksempel-typescript",
+  "version": "1.0.0",
+  "description": "TypeScript-versjon av webapplikasjonen som viser informasjon om fjell",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "tsx app.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p public/tsconfig.json",
+    "build:watch": "tsc -p public/tsconfig.json --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

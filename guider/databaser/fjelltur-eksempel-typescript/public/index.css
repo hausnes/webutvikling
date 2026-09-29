@@ -1,0 +1,32 @@
+/* Nullstiller margin og padding for alle elementer */
+html, body {
+    margin: 0;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* 
+    Framvisning av fjellene i et CSS Grid, der hver fjell vises i en egen "boks" som er minst 200px bred, og ellers fleksibel for å fylle tilgjengelig plass.
+    Det er også lagt til et gap mellom boksene, og padding rundt hele gridet for å gjøre det mer luftig og pent. 
+*/
+
+body {
+    display: grid;
+    /* definerer kolonnene i et CSS Grid slik at det automatisk opprettes så mange kolonner som får plass, 
+    der hver kolonne er minst 200px bred og ellers fleksibel for å fylle tilgjengelig plass (maksverdi på 1fr) */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    background-color: #8b8b8b;
+}
+
+img {
+    width: 100%;
+    height: auto; 
+    border-radius: 8px; /* legger til avrundede hjørner på bildene */
+}
+
+.kort {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: white;
+}

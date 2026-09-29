@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fjellturer for person</title>
+    <script type="module" src="dist/eks-fjellturer-for-person.js"></script>
+    <link rel="stylesheet" href="eks-fjellturer-for-person.css">
+</head>
+<body>
+    <!-- Venstre panel: personvalg -->
+    <div id="sidebar">
+        <h2>Velg person</h2>
+        <select id="personDropdown" title="Personvalg">
+            <option value="">Velg en person</option>
+        </select>
+
+        <nav id="sidebar-nav">
+            <a href="index.html" class="nav-lenke">⌂ Hjem</a>
+            <a href="eks-registrere-ny-tur.html" class="nav-lenke">+ Registrer ny tur</a>
+        </nav>
+    </div>
+
+    <!-- Høyre panel: fjellturer for valgt person, fylles ut av JS -->
+    <div id="fjellturerContainer"></div>
+</body>
+</html>

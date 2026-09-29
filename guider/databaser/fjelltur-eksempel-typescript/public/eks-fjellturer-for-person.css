@@ -1,0 +1,125 @@
+/* Deler designet inn i to deler, med select-elementet til venstre, og resultatene til høyre. */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+}
+
+/* Venstre panel – personvalg */
+#sidebar {
+    width: 220px;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#sidebar h2 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a0c4ff;
+    margin-bottom: 8px;
+}
+
+#personDropdown {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+    border: 1px solid rgba(160, 196, 255, 0.4);
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0c4ff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+#personDropdown:hover,
+#personDropdown:focus {
+    border-color: #a0c4ff;
+    background-color: rgba(160, 196, 255, 0.12);
+}
+
+#personDropdown option {
+    background: #16213e;
+    color: #e0e0e0;
+}
+
+#sidebar-nav {
+    margin-top: auto;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-lenke {
+    display: block;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #a0c4ff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-lenke:hover {
+    background: rgba(160, 196, 255, 0.1);
+    color: #c2d9ff;
+}
+
+/* Høyre panel – resultater */
+#fjellturerContainer {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+#fjellturerContainer h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #a0c4ff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(160, 196, 255, 0.3);
+}
+
+#fjellturerContainer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#fjellturerContainer li {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 16px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#fjellturerContainer li:hover {
+    background: rgba(160, 196, 255, 0.1);
+    border-color: rgba(160, 196, 255, 0.4);
+}
