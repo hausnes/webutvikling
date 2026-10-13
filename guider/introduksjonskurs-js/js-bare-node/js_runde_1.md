@@ -264,11 +264,9 @@ if (alder >= 16) {
 
 Kjør den tre ganger. Endre `alder` mellom hver gang, og skriv ned hva som kom ut:
 
-- **alder = 15:** ✏️
+- **alder = 12:** ✏️
 - **alder = 16:** ✏️
-- **alder = 17:** ✏️
-
-Koden var helt lik alle tre gangene.
+- **alder = 77:** ✏️
 
 > ✏️ Hva var det som bestemte hvilken linje som ble skrevet ut?
 
@@ -391,10 +389,10 @@ for (let i = 0; i < 5; i++) {
 En `for`-løkke har tre deler inne i parentesen, skilt med semikolon:
 
 ```js
-for (let i = 0; i < 5; i++) {
-  //       start      stopp når    etter
-  //       her        dette ikke   hver
-  //                  er sant      runde
+for (let i = 0; i < 5;       i++) {
+  // start      stopp når    etter
+  // her        dette ikke   hver
+  //            er sant      runde
 }
 ```
 
@@ -474,7 +472,7 @@ Lagre og kjør. Programmet stopper aldri av seg selv. **Stopp det med `Ctrl + C`
 
 ---
 
-## Del 5 – Lister
+## Del 5 – Lister (Array)
 
 En liste er én variabel som holder på mange verdier samtidig – som en rad med nummererte bokser.
 
