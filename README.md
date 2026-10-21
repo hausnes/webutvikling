@@ -3,8 +3,9 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 
 ## 📖 Les **guider** til utvalgte konsepter
 
-### CSS
-- Grunnleggende CSS, med noen nyttige eksempler: [Les guide](./guider/guide%20-%20css.md)
+### HTML og CSS
+- **HTML** for nybegynnere: tagger, lenker, bilder, lister, tabeller, struktur, Emmet og mer. [Les guide](./guider/html-og-css/guide%20-%20html.md)
+- **CSS** for nybegynnere: selektorer, farger, boksmodellen, flexbox, grid og nyttige eksempler som sentrering og menyer. [Les guide](./guider/html-og-css/guide%20-%20css.md)
 
 ### Javascript
 - Kurs i **JS**: [Les guide](./guider/introduksjonskurs-js/00-oversikt.md)
