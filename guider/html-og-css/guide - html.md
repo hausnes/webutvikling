@@ -4,7 +4,7 @@ HTML er språket som bestemmer **hva** som er på en nettside: overskrifter, avs
 
 Alle eksemplene kan du prøve selv. Lim dem inn i en HTML-fil, lagre, og se resultatet i nettleseren. Endre gjerne på koden og se hva som skjer.
 
-Når du har lest gjennom, kan du gå løs på [oppgaven: Lag en nettside om hobbyen din](oppgave%20-%20html%20hobbyside.md).
+Forsøk fortløpende koden du leser om! Bygg gjerne sakte men sikkert portfolioen/"skrytesiden" som er første prosjekt.
 
 Innhold:
 1. [Hva er HTML?](#1-hva-er-html)
