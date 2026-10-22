@@ -1174,8 +1174,6 @@ Legg merke til:
 
 ## Videre
 
-Nå er du klar for [oppgaven: Lag en nettside om hobbyen din](oppgave%20-%20html%20hobbyside.md).
-
 Vil du lese mer, er disse gode:
 - [MDN Web Docs – HTML](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content) (grundig og riktig, på engelsk)
 - [W3Schools – HTML](https://www.w3schools.com/html/) (mange små eksempler du kan prøve direkte)
