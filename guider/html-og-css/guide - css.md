@@ -373,8 +373,8 @@ Slik fordeler `justify-content` tre bokser på en rad:
 flex-start:     [1][2][3]
 center:                  [1][2][3]
 flex-end:                         [1][2][3]
-space-between:  [1]          [2]          [3]
-space-around:     [1]       [2]       [3]
+space-between:  [1]         [2]        [3]
+space-around:      [1]      [2]     [3]
 ```
 
 ### Bryte til ny linje: `flex-wrap`
