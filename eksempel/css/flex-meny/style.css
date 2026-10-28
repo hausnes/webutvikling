@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(37, 57, 102);
+    color: white;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+div {
+    display: flex;
+    align-items: center;
+}
+
+a {
+    /* background-color: brown; */
+    padding: 1rem;
+    /* border: 2px solid black; */
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: rgb(222, 77, 77);
+}
