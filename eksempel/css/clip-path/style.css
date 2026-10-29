@@ -1,31 +1,3 @@
-/*
-
-Korleis clip-path fungerer
-clip-path lagar ein form, og berre det som er innanfor forma blir vist. 
-Resten av elementet blir klipt bort. Elementet tek likevel like mykje plass i layouten som før.
-
-polygon(...) er ei liste med punkt i formatet x y, skilde med komma. 
-Nettlesaren dreg strekar frå punkt til punkt og lukkar forma til slutt. 
-
-Koordinatane er rekna frå øvre venstre hjørne av elementet:
-x: 0 er venstre kant og 100% er høgre kant.
-y: 0 er toppen og 100% er botnen. Y aukar nedover.
-
-(0,0) ─────────────── (100%,0)
-  │                      ╱
-  │                    ╱
-  │                  ╱
-(0,100%) ───── (100% - skrå, 100%)
-Punkta i rekkjefølgje:
-Punkt	Betyding
-0 0	øvre venstre
-100% 0	øvre høgre
-calc(100% - var(--skrå)) 100%	botnen, --skrå piksel inn frå høgre
-0 100%	nedre venstre
-Med calc() kan du blande prosent og piksel. Her betyr det «heile breidda minus 80px», så streken treffer botnen same stad uansett kor brei boksen er.
-
-*/
-
 * {
     margin: 0;
     padding: 0;
