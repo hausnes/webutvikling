@@ -8,6 +8,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /* Pulserande bakgrunnsfarge */
+    animation: puls 6s ease-in-out infinite alternate;
 }
 
 main {
@@ -33,6 +36,19 @@ main {
 
     /* Avrunding oppe til høgre */
     border-top-right-radius: 400px;
+}
+
+@keyframes puls {
+    0%   { background-color: rgb(255, 96, 151); }  /* rosa */
+    50%  { background-color: rgb(255, 140, 105); } /* korall */
+    100% { background-color: rgb(186, 104, 255); } /* lilla */
+}
+
+/* Skru av animasjonen for dei som har slått av rørsle i operativsystemet */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+    }
 }
 
 .utheva {
