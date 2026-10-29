@@ -21,8 +21,7 @@ main {
     justify-content: center;
     align-items: center;
 
-    /* border: 2px solid black; */
-
+    /* Sjå forklaring i README.md */
     --skrå: 80px; /* kor langt inn frå høgre den skrå streken treffer botnen */
 
     clip-path: polygon(
@@ -31,6 +30,9 @@ main {
         calc(100% - var(--skrå)) 100%, /* nede, --skrå inn frå høgre */
         0 100%                         /* nedre venstre */
     );
+
+    /* Avrunding oppe til høgre */
+    border-top-right-radius: 400px;
 }
 
 .utheva {
