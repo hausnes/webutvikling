@@ -1,0 +1,96 @@
+/* Fargepalett – henta frå albumcoveret (svart + kremkvit) med raud som aksent
+   Bakgrunn side:   #2a2a2a  (mørk grå)
+   Spelar:          #111111  (nesten svart, som coveret)
+   Spoleliste:      #1c1c1c  (litt lysare svart)
+   Tekst:           #f2efe6  (kremkvit, som «CASH»)
+   Dempa tekst:     #8a8a8a  (grå)
+   Aksent:          #e63946  (raud)
+*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #2a2a2a;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    background-color: #111111;
+    width: 500px;
+    height: 500px;
+
+    border-radius: 12px;                          /* runde hjørne */
+    overflow: hidden;                             /* så innhaldet følgjer hjørna */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);   /* skugge under spelaren */
+
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 400px auto;
+    grid-template-areas:
+        "spilleliste album"
+        "spilleliste spiller";
+}
+
+/* Spelelista */
+#spilleliste {
+    grid-area: spilleliste;
+    background-color: #1c1c1c;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#spilleliste a {
+    padding: 0.75rem;                 /* luft rundt teksten */
+    border-bottom: 1px solid #2f2f2f; /* strek mellom spora */
+    color: #8a8a8a;                   /* dempa tekst */
+    text-decoration: none;            /* bort med understreken */
+}
+
+#spilleliste a:hover {
+    color: #f2efe6;                   /* teksten lyser opp når musa er over */
+    background-color: #262626;
+}
+
+#spilleliste a:target {
+    color: #f2efe6;                   /* sporet som er valt (står i adresselinja, t.d. #spor2) */
+    font-weight: bold;
+    border-left: 4px solid #e63946;   /* raud strek på venstre side */
+}
+
+/* Albumbiletet */
+#albumArt {
+    grid-area: album;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;                /* klipper heller enn å strekkje */
+}
+
+/* Spelaren */
+#spiller {
+    grid-area: spiller;
+
+    display: flex;
+    justify-content: space-around;    /* vassrett */
+    align-items: center;              /* loddrett */
+    font-size: 2.5rem;
+}
+
+#spiller a {
+    padding: 1rem;
+    color: #f2efe6;
+    text-decoration: none;            /* bort med understreken */
+}
+
+#spiller a:hover {
+    color: #e63946;                   /* raud ved hover */
+    transform: scale(1.2);            /* knappen veks litt ved hover */
+}
