@@ -1,0 +1,16 @@
+{
+  // Nettleserkoden (kjører i nettleseren, og har tilgang til document, window osv.)
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "types": [],
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src/nettleser"]
+}

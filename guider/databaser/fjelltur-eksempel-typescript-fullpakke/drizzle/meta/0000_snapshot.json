@@ -1,0 +1,299 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "18e1cf5b-764d-41ad-a0fb-42206ac31df1",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "bilde": {
+      "name": "bilde",
+      "columns": {
+        "bilde_id": {
+          "name": "bilde_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tittel": {
+          "name": "tittel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "bildetekst": {
+          "name": "bildetekst",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "filnavn": {
+          "name": "filnavn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tur_id": {
+          "name": "tur_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "bilde_tur_id_fjelltur_fjelltur_id_fk": {
+          "name": "bilde_tur_id_fjelltur_fjelltur_id_fk",
+          "tableFrom": "bilde",
+          "tableTo": "fjelltur",
+          "columnsFrom": [
+            "tur_id"
+          ],
+          "columnsTo": [
+            "fjelltur_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fjell": {
+      "name": "fjell",
+      "columns": {
+        "fjell_id": {
+          "name": "fjell_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "fjellnavn": {
+          "name": "fjellnavn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "hoyde": {
+          "name": "hoyde",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "beskrivelse": {
+          "name": "beskrivelse",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "omraade_id": {
+          "name": "omraade_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "foto": {
+          "name": "foto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "fjell_fjellnavn_unique": {
+          "name": "fjell_fjellnavn_unique",
+          "columns": [
+            "fjellnavn"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "fjell_omraade_id_omraade_id_fk": {
+          "name": "fjell_omraade_id_omraade_id_fk",
+          "tableFrom": "fjell",
+          "tableTo": "omraade",
+          "columnsFrom": [
+            "omraade_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "fjelltur": {
+      "name": "fjelltur",
+      "columns": {
+        "fjelltur_id": {
+          "name": "fjelltur_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "tidspunkt": {
+          "name": "tidspunkt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "varighet": {
+          "name": "varighet",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "beskrivelse": {
+          "name": "beskrivelse",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "brukernavn": {
+          "name": "brukernavn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fjell_id": {
+          "name": "fjell_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fjelltur_brukernavn_person_brukernavn_fk": {
+          "name": "fjelltur_brukernavn_person_brukernavn_fk",
+          "tableFrom": "fjelltur",
+          "tableTo": "person",
+          "columnsFrom": [
+            "brukernavn"
+          ],
+          "columnsTo": [
+            "brukernavn"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fjelltur_fjell_id_fjell_fjell_id_fk": {
+          "name": "fjelltur_fjell_id_fjell_fjell_id_fk",
+          "tableFrom": "fjelltur",
+          "tableTo": "fjell",
+          "columnsFrom": [
+            "fjell_id"
+          ],
+          "columnsTo": [
+            "fjell_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "omraade": {
+      "name": "omraade",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "navn": {
+          "name": "navn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "beskrivelse": {
+          "name": "beskrivelse",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "person": {
+      "name": "person",
+      "columns": {
+        "brukernavn": {
+          "name": "brukernavn",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fornavn": {
+          "name": "fornavn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "etternavn": {
+          "name": "etternavn",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "epost": {
+          "name": "epost",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "fjelltur-eksempel-typescript-fullpakke",
+  "version": "1.0.0",
+  "description": "Fjelltur-eksempelet med TypeScript hele veien: typer fra databaseskjemaet, delte typer mellom server og nettleser, og validering",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "npm run typecheck && npm run build && tsx src/server/app.ts",
+    "typecheck": "tsc -p tsconfig.json && tsc -p tsconfig.nettleser.json",
+    "build": "esbuild src/nettleser/index.ts src/nettleser/eks-fjellturer-for-person.ts src/nettleser/eks-registrere-ny-tur.ts --bundle --format=esm --outdir=public/js",
+    "db:generer": "drizzle-kit generate",
+    "db:nullstill": "tsx src/db/nullstill.ts",
+    "db:studio": "drizzle-kit studio"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.4",
+    "drizzle-zod": "^0.8.3",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.6",
+    "drizzle-kit": "^0.31.11",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

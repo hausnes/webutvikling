@@ -1,0 +1,16 @@
+{
+  // Server, database og felles typer (kjører i Node.js)
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src/server", "src/db", "src/felles", "drizzle.config.ts"]
+}
