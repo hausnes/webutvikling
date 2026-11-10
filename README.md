@@ -6,6 +6,8 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 ### HTML og CSS
 - **HTML** for nybegynnere: tagger, lenker, bilder, lister, tabeller, struktur, Emmet og mer. [Les guide](./guider/html-og-css/guide%20-%20html.md)
 - **CSS** for nybegynnere: selektorer, farger, boksmodellen, flexbox, grid og nyttige eksempler som sentrering og menyer. [Les guide](./guider/html-og-css/guide%20-%20css.md)
+- **Musikkspiller**, steg for steg: bygg en musikkspiller med flexbox og grid, og lær å tenke i «bokser inni bokser». Med skjermbilder underveis. [Les guide](./guider/html-og-css/musikkspiller-eksempel/README.md)
+- **Responsiv nettside**, steg for steg: få siden til å fungere på både mobil og PC med `flex-wrap`, `auto-fit`, `clamp()`, media queries og container queries. Med skjermbilder underveis. [Les guide](./guider/html-og-css/responsiv-nettside/README.md)
 
 ### Javascript
 - Kurs i **JS**: [Les guide](./guider/introduksjonskurs-js/00-oversikt.md)

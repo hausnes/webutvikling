@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs>
+<linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fa8dc"/><stop offset="1" stop-color="#d0e4f5"/></linearGradient>
+</defs>
+<rect width="800" height="500" fill="url(#himmel)"/>
+<circle cx="640" cy="150" r="45" fill="#fffbe6"/>
+<polygon points="247,400 370,230 472,90 584,245 697,400" fill="#4b5f73"/>
+<polygon points="427,165 454,145 472,168 494,148 521,165 472,90" fill="#f4f6f7"/>
+<polygon points="0,500 0,273 133,324 267,251 400,337 533,261 667,278 800,263 800,500" fill="#36495a"/>
+<polygon points="0,500 0,325 100,377 200,370 300,345 400,374 500,375 600,377 700,335 800,334 800,500" fill="#1f3a33"/>
+</svg>
