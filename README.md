@@ -9,10 +9,18 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - **Musikkspiller**, steg for steg: bygg en musikkspiller med flexbox og grid, og lær å tenke i «bokser inni bokser». Med skjermbilder underveis. [Les guide](./guider/html-og-css/musikkspiller-eksempel/README.md)
 - **Responsiv nettside**, steg for steg: få siden til å fungere på både mobil og PC med `flex-wrap`, `auto-fit`, `clamp()`, media queries og container queries. Med skjermbilder underveis. [Les guide](./guider/html-og-css/responsiv-nettside/README.md)
 
+**Øv deg med spill** – interaktive sider der du løser små oppgaver med ekte CSS-kode:
+- **Flexbox Froggy**: hjelp froskene til riktig vannlilje ved å bruke flexbox. Du lærer å plassere og fordele elementer på en rad eller i en kolonne med `justify-content`, `align-items`, `flex-direction`, `flex-wrap` og mer. [Spill Flexbox Froggy](https://flexboxfroggy.com/)
+- **Grid Garden**: vann gulrøttene og bli kvitt ugresset ved å bruke CSS grid. Du lærer å plassere elementer i rader og kolonner med `grid-column`, `grid-row`, `grid-template-columns` og `grid-area`. [Spill Grid Garden](https://cssgridgarden.com/)
+- **CSS Diner**: velg riktig mat fra bordet ved å skrive riktig selektor. Du lærer å treffe akkurat de HTML-elementene du vil style, med selektorer for tagger, klasser, id-er, barn og søsken, samt pseudoklasser som `:first-child` og `:nth-child()`. [Spill CSS Diner](https://flukeout.github.io/)
+
 ### Javascript
-- Kurs i **JS**: [Les guide](./guider/introduksjonskurs-js/00-oversikt.md)
-    - Her finner du tema som variabler, datatyper, utskrift, aritmetikk, kontrollstrukturer, funksjoner, objekter, arrays, hendelseshåndtering, skjemaer, hente data vha fetch og mer.
-- [Oppgaver i **JS**:](./oppgaver/oppgaver%20-%20js.md)
+- **Ren JS med Node**, uten HTML og CSS: skriv små programmer i én fil og kjør dem i terminalen med `node`. Fint for å lære grunnleggende programmering før du kobler koden til en nettside. Hver runde har en guide og oppgaver med hint og løsningsforslag.
+    - Runde 1: `console.log`, variabler, `if`/`else`, løkker og lister. [Les guide](./guider/introduksjonskurs-js/js-bare-node/js_runde_1.md) · [Oppgaver](./guider/introduksjonskurs-js/js-bare-node/js_runde_1_oppgaver.md)
+    - Runde 2: funksjoner, parametere og `return`. [Les guide](./guider/introduksjonskurs-js/js-bare-node/js_runde_2_funksjoner.md) · [Oppgaver](./guider/introduksjonskurs-js/js-bare-node/js_runde_2_funksjoner_oppgaver.md)
+    - Runde 3: objekter, arrays og løkker gjennom lister med objekter. [Les guide](./guider/introduksjonskurs-js/js-bare-node/js_runde_3_objekter_arrays.md) · [Oppgaver](./guider/introduksjonskurs-js/js-bare-node/js_runde_3_objekter_arrays_oppgaver.md)
+- **JS i nettleseren**, med HTML og CSS: lær å bruke JS til å endre nettsider. Temaene er DOM, variabler, kontrollstrukturer, funksjoner, arrays og objekter, hendelser, skjemaer, henting av data med `fetch` og array-metoder som `filter`, `map` og `reduce`. [Les guide](./guider/introduksjonskurs-js/00-oversikt.md)
+- **Oppgaver** i JS. [Se oppgaver](./oppgaver/oppgaver%20-%20js.md)
 
 ### Node JS
 - Eksempelprosjekt **chatteapp**, med fokus på lesing fra, og skriving til, en database. [Les guide](./guider/guide%20-%20nodejs%20prosjekt.md)
@@ -46,6 +54,8 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 
 ### TypeScript
 - Introduksjon til TypeScript, med eksempler og oppgaver. [Les guide](./guider/guide%20-%20typescript.md)
+- **Fjellturer med TypeScript**: den samme fjelltur-appen, bygget steg for steg med TypeScript på både serveren og i nettleseren. Guiden forklarer hva som er annerledes fra vanlig JavaScript. Du trenger ikke ha gjort JS-versjonen først. [Les guide](./guider/databaser/fjelltur-eksempel-typescript/README.md)
+- **Fjellturer med TypeScript (fullpakke)**: viser hvordan TypeScript brukes i et typisk profesjonelt prosjekt. Typene lages automatisk fra databaseskjemaet med Drizzle ORM, serveren og nettleseren deler de samme typene, og data som kommer inn valideres med Zod. [Les guide](./guider/databaser/fjelltur-eksempel-typescript-fullpakke/README.md)
 
 ### Docker
 - Introduksjon til Docker, med eksempler og oppgaver. [Les guide](./guider/guide%20-%20docker.md)
