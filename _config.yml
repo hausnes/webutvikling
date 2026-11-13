@@ -1,0 +1,3 @@
+# Fastset adressa som Jekyll brukar i canonical og og:url, så ho blir
+# https://www.hausnes.no/webutvikling/ i staden for http eller hausnes.github.io.
+url: "https://www.hausnes.no"
