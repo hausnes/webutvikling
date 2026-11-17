@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaffekroken – Oppgave 1: Meny fra venstre</title>
+    <link rel="stylesheet" href="oppgave-1.css">
+</head>
+<body>
+    <header>
+        <a href="oppgave-1.html" class="logo">☕ Kaffekroken</a>
+
+        <button class="meny-knapp" popovertarget="meny" aria-label="Åpne meny">☰</button>
+
+        <nav id="meny" popover>
+            <button class="lukk-knapp" popovertarget="meny" popovertargetaction="hide" aria-label="Lukk meny">✕</button>
+            <a href="#">Hjem</a>
+            <a href="#">Meny</a>
+            <a href="#">Åpningstider</a>
+            <a href="#">Om oss</a>
+            <a href="#">Kontakt</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <img src="../bilder/hero.svg" alt="Kaffekopp med damp på et bord">
+            <h1>Velkommen til Kaffekroken</h1>
+            <p>Den lille kafeen på hjørnet. Vi baker alt selv, hver morgen, og kaffen er alltid nytraktet. Ta med en venn, en bok eller lekseboka.</p>
+        </section>
+
+        <h2>Dette serverer vi</h2>
+        <div class="kort-liste">
+            <article class="kort">
+                <img src="../bilder/kaffe.svg" alt="Kaffekopp">
+                <h3>Kaffe og te</h3>
+                <p>Filterkaffe, cappuccino, kakao og mange slags te. Påfyll er gratis.</p>
+            </article>
+            <article class="kort">
+                <img src="../bilder/bolle.svg" alt="Kanelbolle">
+                <h3>Nybakt</h3>
+                <p>Kanelboller, skoleboller og dagens kake. Kommer ut av ovnen klokka åtte.</p>
+            </article>
+            <article class="kort">
+                <img src="../bilder/lunsj.svg" alt="Skål med suppe">
+                <h3>Lunsj</h3>
+                <p>Dagens suppe med hjemmebakt brød, fra klokka elleve til to.</p>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Kaffekroken · Hjørnegata 1</p>
+    </footer>
+</body>
+</html>

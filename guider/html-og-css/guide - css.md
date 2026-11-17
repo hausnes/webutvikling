@@ -766,6 +766,8 @@ For at dette skal virke på mobil, må HTML-filen ha denne linjen i `<head>`. De
 
 Vil du se hvordan du gjør en hel nettside responsiv, steg for steg? Se [Vi lager en responsiv nettside](responsiv-nettside/README.md).
 
+Vil du ha en «hamburgermeny» ☰ som popper opp på mobil? Se [Hamburgermeny uten JavaScript](hamburgermeny/README.md).
+
 ---
 
 ## 11. Finn feil med utviklerverktøyene

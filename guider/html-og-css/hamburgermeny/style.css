@@ -1,0 +1,187 @@
+/* ---------- Grunnoppsett (steg 2) ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #efe6da;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: #fffaf3;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    color: #2b1d14;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+main,
+footer {
+    padding: 20px;
+}
+
+.hero img {
+    border-radius: 10px;
+}
+
+.hero h1 {
+    margin: 20px 0 10px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0;
+}
+
+.kort-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.kort {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.kort img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+}
+
+.kort h3,
+.kort p {
+    margin: 10px 15px;
+}
+
+footer {
+    background-color: #3b2a20;
+    color: white;
+    text-align: center;
+}
+
+/* ---------- Toppen: logo og hamburger-knapp (steg 2) ---------- */
+
+header {
+    display: flex;
+    justify-content: space-between;   /* logo til venstre, knapp til høyre */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3b2a20;
+}
+
+.logo {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.meny-knapp,
+.lukk-knapp {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;                  /* «hånd» når musen er over */
+}
+
+/* ---------- Menyen på høyre side (steg 3) ---------- */
+
+#meny {
+    margin: 0;
+    margin-left: auto;                /* skyv menyen helt til høyre */
+    height: 100%;                     /* like høy som nettleservinduet */
+    width: 250px;
+    max-width: 80%;
+}
+
+/* ---------- Lenkene under hverandre (steg 4) ---------- */
+
+#meny:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* ---------- Farger, lukkeknapp og mørk bakgrunn (steg 5) ---------- */
+
+#meny {
+    padding: 20px;
+    border: none;
+    background-color: #3b2a20;
+}
+
+#meny a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#meny a:hover {
+    background-color: #5a4334;
+}
+
+.lukk-knapp {
+    align-self: flex-end;             /* krysset helt til høyre */
+}
+
+#meny::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);   /* gjør resten av siden mørkere */
+}
+
+/* ---------- Bonus: menyen glir inn fra høyre (steg 7) ---------- */
+
+#meny {
+    transition: translate 0.3s, display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+    translate: 100% 0;                /* skjult: flyttet ut til høyre */
+}
+
+#meny:popover-open {
+    translate: 0 0;                   /* åpen: på plass */
+}
+
+@starting-style {
+    #meny:popover-open {
+        translate: 100% 0;            /* start utenfor skjermen når den åpnes */
+    }
+}
+
+/* ---------- Bonus: vanlig meny på store skjermer (steg 8) ---------- */
+
+@media (min-width: 800px) {
+    .meny-knapp,
+    .lukk-knapp {
+        display: none;
+    }
+
+    #meny {
+        display: flex;
+        gap: 20px;
+        position: static;             /* tilbake på sin vanlige plass i header */
+        width: auto;
+        height: auto;
+        padding: 0;
+        background: none;
+        translate: none;
+        transition: none;
+    }
+
+    #meny a {
+        font-size: 1rem;
+        padding: 5px;
+    }
+}
