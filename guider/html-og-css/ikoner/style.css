@@ -1,0 +1,252 @@
+/* ---------- Grunnoppsett ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #efe6da;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: #fffaf3;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    color: #2b1d14;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+main,
+footer {
+    padding: 20px;
+}
+
+.hero img {
+    border-radius: 10px;
+}
+
+.hero h1 {
+    margin: 20px 0 10px;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 0 20px;
+}
+
+footer {
+    background-color: #3b2a20;
+    color: white;
+    text-align: center;
+}
+
+/* ---------- Alle ikoner (del 3) ---------- */
+
+.ikon {
+    width: 1.2em;                     /* like stort som teksten, litt større */
+    height: 1.2em;
+    flex-shrink: 0;                   /* ikke la flexbox klemme ikonet */
+}
+
+/* ---------- Ikon og tekst ved siden av hverandre (del 4) ---------- */
+
+.info {
+    list-style: none;                 /* ikonene erstatter kulepunktene */
+    padding: 0;
+}
+
+.info li,
+.info a {
+    display: flex;
+    align-items: center;              /* ikon og tekst på linje */
+    gap: 10px;
+}
+
+.info li {
+    margin-bottom: 10px;
+}
+
+.info .ikon {
+    color: #c4621b;                   /* bare ikonet blir oransje */
+}
+
+.info a {
+    color: #2b1d14;
+}
+
+.info a:hover {
+    color: #c4621b;
+}
+
+/* ---------- Ikon i logo og knapp (del 4) ---------- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #3b2a20;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.knapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #c4621b;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.knapp:hover {
+    background-color: #a14f14;
+}
+
+.knapp .ikon {
+    transition: translate 0.2s;
+}
+
+.knapp:hover .ikon {
+    translate: 4px 0;                 /* pilen dytter seg litt fram */
+}
+
+/* ---------- Store ikoner i kort (del 4) ---------- */
+
+.kort-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.kort {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.kort .ikon {
+    width: 64px;
+    height: 64px;
+    padding: 15px;                    /* luft mellom ikonet og sirkelen */
+    border-radius: 50%;               /* rund bakgrunn */
+    background-color: #f6e3cc;
+    color: #8a5530;
+}
+
+.kort h3 {
+    margin: 10px 0 5px;
+}
+
+.kort p {
+    margin: 0;
+}
+
+/* ---------- Emoji i tekst (del 2) ---------- */
+
+.nyhet {
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #fff1c9;
+}
+
+/* ---------- Hamburgermenyen (fra hamburgermeny-guiden) ---------- */
+
+.meny-knapp,
+.lukk-knapp {
+    display: flex;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.75rem;
+    cursor: pointer;
+}
+
+#meny {
+    margin: 0;
+    margin-left: auto;
+    height: 100%;
+    width: 250px;
+    max-width: 80%;
+    padding: 20px;
+    border: none;
+    background-color: #3b2a20;
+    transition: translate 0.3s, display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+    translate: 100% 0;
+}
+
+#meny:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    translate: 0 0;
+}
+
+@starting-style {
+    #meny:popover-open {
+        translate: 100% 0;
+    }
+}
+
+#meny a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#meny a:hover {
+    background-color: #5a4334;
+}
+
+.lukk-knapp {
+    align-self: flex-end;
+}
+
+#meny::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 800px) {
+    .meny-knapp,
+    .lukk-knapp {
+        display: none;
+    }
+
+    #meny {
+        display: flex;
+        gap: 20px;
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background: none;
+        translate: none;
+        transition: none;
+    }
+
+    #meny a {
+        font-size: 1rem;
+        padding: 5px;
+    }
+}

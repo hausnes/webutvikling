@@ -9,6 +9,7 @@ Dette er et forsøk på å samle guider, oppgaver, løsningsforslag og eksempler
 - **Musikkspiller**, steg for steg: bygg en musikkspiller med flexbox og grid, og lær å tenke i «bokser inni bokser». Med skjermbilder underveis. [Les guide](./guider/html-og-css/musikkspiller-eksempel/README.md)
 - **Responsiv nettside**, steg for steg: få siden til å fungere på både mobil og PC med `flex-wrap`, `auto-fit`, `clamp()`, media queries og container queries. Med skjermbilder underveis. [Les guide](./guider/html-og-css/responsiv-nettside/README.md)
 - **Hamburgermeny uten JavaScript**, steg for steg: lag en ☰-meny som glir inn fra siden, med HTML-attributtet `popover` og litt CSS. Med skjermbilder underveis, og løsningsforslag til oppgavene. [Les guide](./guider/html-og-css/hamburgermeny/README.md)
+- **Ikoner og emojis**: gi siden mer liv med emojis og SVG-ikoner fra Lucide. Når passer hva, hvordan får ikonene samme farge som teksten, og hvordan unngår du rot? [Les guide](./guider/html-og-css/ikoner/README.md)
 
 **Øv deg med spill** – interaktive sider der du løser små oppgaver med ekte CSS-kode:
 - **Flexbox Froggy**: hjelp froskene til riktig vannlilje ved å bruke flexbox. Du lærer å plassere og fordele elementer på en rad eller i en kolonne med `justify-content`, `align-items`, `flex-direction`, `flex-wrap` og mer. [Spill Flexbox Froggy](https://flexboxfroggy.com/)

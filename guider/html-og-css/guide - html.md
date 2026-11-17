@@ -513,6 +513,8 @@ Det er lov å skrive attributtene på hver sin linje. Det gjør lange tagger mye
 
 Det beste er å bruke dine egne bilder. Ellers kan du bruke nettsider med gratis bilder, for eksempel [Unsplash](https://unsplash.com) eller [Pixabay](https://pixabay.com). Ikke ta bilder fra et vanlig Google-søk. De fleste bilder på nettet er beskyttet av opphavsrett.
 
+Leter du etter **ikoner**, som et lite telefonrør eller en pil? Se [Ikoner og emojis](ikoner/README.md).
+
 ---
 
 ## 9. Lister
